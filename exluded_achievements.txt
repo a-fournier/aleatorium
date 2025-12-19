@@ -1,0 +1,63 @@
+1 - Magdalene
+2 - Cain
+3 - Judas
+4 - The Womb
+16 - Something From The Future
+32 - ???
+33 - Everything Is Terrible!!!
+34 - It Lives!
+37 - Basement Boy
+38 - Spelunker Boy
+39 - Dark Boy
+40 - Mama's Boy
+41 - Golden God!
+42 - Eve
+57 - The Polaroid
+69 - !Platinum God!
+78 - The Negative
+79 - Azazel
+80 - Lazarus
+81 - Eden
+82 - The Lost
+83 - Dead Boy
+84 - The Real Platinum God
+144 - Super Meat Boy
+149 - Missing Poster
+151 - Store Upgrade lv.1
+152 - Store Upgrade lv.2
+153 - Store Upgrade lv.3
+154 - Store Upgrade lv.4
+199 - Lilith
+234 - Blue Womb
+235 - 1001%
+246 - Everything is Terrible 2!!!
+251 - Keeper
+320 - New Area
+339 - 1000000%
+340 - Apollyon
+341 - Greedier!
+390 - The Forgotten
+404 - Bethany
+405 - Jacob & Esau
+407 - A Secret Exit
+474 - The Broken
+475 - The Dauntless
+476 - The Hoarder
+477 - The Deceiver
+478 - The Soiled`
+479 - The Curdled
+480 - The Savage
+481 - The Benighted
+482 - The Enigma
+483 - The Capricious
+484 - The Baleful
+485 - The Harlot
+486 - The Miser
+487 - The Empty
+488 - The Fettered
+489 - The Zealot
+490 - The Deserter
+635 - A Strange Door
+637 - Dead God
+
+
