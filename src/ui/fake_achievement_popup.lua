@@ -91,8 +91,8 @@ function FakeAchievementPopup.OnPostRender(_mod)
     end
 
     -- Texte
-    local titleColor    = Color(0, 0, 0, alpha, 0, 0, 0)
-    local subtitleColor = Color(0, 0, 0, alpha, 0, 0, 0)
+    local titleColor    = KColor(0, 0, 0, alpha, 0, 0, 0)
+    local subtitleColor = KColor(0, 0, 0, alpha, 0, 0, 0)
     font:DrawStringScaledUTF8(state.title,    center.X - 30, center.Y - 40, 1.0, 1.0, titleColor,    0, true)
     font:DrawStringScaledUTF8(state.subtitle, center.X - 30, center.Y - 15, 1.0, 1.0, subtitleColor, 0, true)
 
