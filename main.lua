@@ -1,10 +1,10 @@
 include("src/item_room_replacer")
+include("src/on_kill_achievement")
 
 local Aleatorium = RegisterMod('Aleatorium', 1)
 
-if ItemRoomReplacer and ItemRoomReplacer.Init then
-    ItemRoomReplacer.Init(Aleatorium)
-end
+ItemRoomReplacer.Init(Aleatorium)
+OnKillAchievement.Init(Aleatorium)
 
 Isaac.DebugString("Aleatorium mod loaded !")
 
