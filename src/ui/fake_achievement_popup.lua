@@ -78,21 +78,21 @@ function FakeAchievementPopup.OnPostRender(_mod)
     local scale = 1.0 + 0.05 * (1.0 - t)
 
     -- Papier
-    paper.Color = KColor(1, 1, 1, alpha, 0, 0, 0)
+    paper.Color = Color(1, 1, 1, alpha, 0, 0, 0)
     paper.Scale = Vector(scale, scale)
     paper:Render(center, Vector.Zero, Vector.Zero)
 
     -- Icône d’item (si dispo)
     if state.iconItemId ~= nil then
         local icoPos = center + Vector(-120, -10)
-        icon.Color = KColor(1, 1, 1, alpha, 0, 0, 0)
+        icon.Color  = Color(1, 1, 1, alpha, 0, 0, 0)
         icon.Scale = Vector(1.0, 1.0)
         icon:Render(icoPos, Vector.Zero, Vector.Zero)
     end
 
     -- Texte
-    local titleColor    = KColor(0, 0, 0, alpha, 0, 0, 0)
-    local subtitleColor = KColor(0, 0, 0, alpha, 0, 0, 0)
+    local titleColor    = Color(0, 0, 0, alpha, 0, 0, 0)
+    local subtitleColor = Color(0, 0, 0, alpha, 0, 0, 0)
     font:DrawStringScaledUTF8(state.title,    center.X - 30, center.Y - 40, 1.0, 1.0, titleColor,    0, true)
     font:DrawStringScaledUTF8(state.subtitle, center.X - 30, center.Y - 15, 1.0, 1.0, subtitleColor, 0, true)
 
