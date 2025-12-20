@@ -1,4 +1,4 @@
-include("src/utils/logger")
+local Logger = require("src/utils/logger")
 
 FakeAchievementPopup = {}
 
@@ -29,7 +29,6 @@ end
 
 local function gotoPhase(phase)
     state.phase = phase
-    Logger.logValue("[phase] => " .. phase)
 
     if phase == "Appear" then
         if state.sfx and not state.sfxPlayed and SFX_ID ~= nil then
@@ -49,7 +48,7 @@ function FakeAchievementPopup.Show(params)
     if state.active then return end
 
     params = params or {}
-    local iconName = assert(params.image, "[AchievementPopup] 'image' is required")
+    local iconName = assert(params.sprite, "[AchievementPopup] 'sprite' is required")
 
     loadPopupSprites(iconName .. ".png")
 
@@ -76,7 +75,7 @@ function FakeAchievementPopup.OnPostRender(_mod)
 
     if popup.Update then popup:Update() end
     if state.phase == "Appear" then
-        if  popup:IsFinished("Appear") then
+        if popup:IsFinished("Appear") then
             gotoPhase("Idle")
         end
     elseif state.phase == "Idle" then
@@ -85,7 +84,7 @@ function FakeAchievementPopup.OnPostRender(_mod)
             gotoPhase("Dissapear")
         end
     elseif state.phase == "Dissapear" then
-        if popup.IsFinished and popup:IsFinished("Dissapear") then
+        if popup:IsFinished("Dissapear") then
             state.active = false
             state.phase  = "none"
         end
@@ -96,6 +95,8 @@ function FakeAchievementPopup.OnPostRender(_mod)
     popup:Render(center, Vector.Zero, Vector.Zero)
 end
 
-function FakeAchievementPopup.Init(mod)
+function FakeAchievementPopup.register(mod)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, FakeAchievementPopup.OnPostRender)
 end
+
+return FakeAchievementPopup

@@ -1,10 +1,10 @@
-include("src/item_room_replacer")
-include("src/on_kill_achievement")
+local AchievementManager = require("src/achievements/achievement_manager")
+local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 
 local Aleatorium = RegisterMod('Aleatorium', 1)
 
-ItemRoomReplacer.Init(Aleatorium)
-OnKillAchievement.Init(Aleatorium)
+AchievementManager.register(Aleatorium)
+FakeAchievementPopup.register(Aleatorium)
 
 Isaac.DebugString("Aleatorium mod loaded !")
 
