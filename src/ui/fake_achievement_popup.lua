@@ -18,10 +18,6 @@ local icon = Sprite()
 icon:Load("gfx/005.100_Collectible.anm2", true) -- anm2 générique items
 icon:Play("Idle", true)
 
--- SFX (optionnel)
-local sfx = SFXManager()
-local SFX_UNLOCK = SoundEffect.SOUND_UNLOCK
-
 -- ====== État interne ======
 local state = {
     active = false,
@@ -31,8 +27,6 @@ local state = {
     subtitle = "\"SOMETHING\"",
     -- info pour l’icône (CollectibleType)
     iconItemId = nil,
-    -- effet visuel
-    sfxPlayed = false,
 }
 
 -- ====== API ======
@@ -47,7 +41,6 @@ function FakeAchievementPopup.Show(params)
     state.maxTtl    = tonumber(params.duration) or 120
     state.ttl       = state.maxTtl
     state.active    = true
-    state.sfxPlayed = false
 
     -- Charger le sprite d’item via ItemConfig (icône dynamique)
     if state.iconItemId ~= nil then
@@ -83,12 +76,6 @@ function FakeAchievementPopup.OnPostRender(_mod)
     local t     = state.ttl / state.maxTtl
     local alpha = math.max(0, t)
     local scale = 1.0 + 0.05 * (1.0 - t)
-
-    -- SFX une seule fois
-    if not state.sfxPlayed then
-        sfx:Play(SFX_UNLOCK, 1.0, 0, false, 1.0)
-        state.sfxPlayed = true
-    end
 
     -- Papier
     paper.Color = KColor(1, 1, 1, alpha, 0, 0, 0)
