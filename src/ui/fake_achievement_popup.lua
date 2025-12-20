@@ -1,110 +1,101 @@
+include("src/utils/logger")
 
--- src/ui/fake_achievement_popup.lua
 FakeAchievementPopup = {}
 
--- ====== Dépendances légères ======
-local font = Font()
-font:Load("font/pftempestasevencondensed.fnt") -- police vanilla
+local ANM2_PATH  = "gfx/ui/achievement/achievements.anm2"
+local ICON_ROOT  = "gfx/ui/achievement/"
 
--- Papier (anm2 vanilla ou custom dans ton mod)
-local paper = Sprite()
--- Si tu as un papier custom dans ton mod, garde ce chemin.
--- Sinon, référence le papier vanilla (après extraction, nom à adapter).
-paper:Load("gfx/ui/achievement/paper.anm2", true)
-paper:Play("Idle", true)
-
--- Icône d’item : on utilise l’ANM2 générique des collectibles
-local icon = Sprite()
-icon:Load("gfx/005.100_Collectible.anm2", true) -- anm2 générique items
-icon:Play("Idle", true)
-
--- ====== État interne ======
+local popup = Sprite()
 local state = {
-    active = false,
-    ttl    = 0,       -- frames restantes à rendre
-    maxTtl = 120,     -- durée par défaut (~2s)
-    title    = "YOU UNLOCKED",
-    subtitle = "\"SOMETHING\"",
-    -- info pour l’icône (CollectibleType)
-    iconItemId = nil,
+    active     = false,
+    phase      = "none",   -- "Appear" | "Idle" | "Dissapear" | "none"
+    ttl        = 0,
+    maxTtl     = 60,
+    alphaIn    = 0.12,
+    alphaOut   = 0.25,
+    sfx        = true,
+    sfxPlayed  = false,
 }
 
--- ====== API ======
---- Affiche la popup factice.
--- @param params table { title?, subtitle?, itemId?, duration? }
-function FakeAchievementPopup.Show(params)
-    params = params or {}
+local sfx = SFXManager()
+local SFX_ID = SoundEffect and SoundEffect.SOUND_POWERUP1 or nil
 
-    state.title     = params.title    or "YOU UNLOCKED"
-    state.subtitle  = params.subtitle or "\"SOMETHING\""
-    state.iconItemId = params.itemId  -- CollectibleType (ex: CollectibleType.COLLECTIBLE_FORGET_ME_NOW)
-    state.maxTtl    = tonumber(params.duration) or 120
-    state.ttl       = state.maxTtl
-    state.active    = true
+local function loadPopupSprites(iconPng)
+    popup:Load(ANM2_PATH, true)
+    popup:ReplaceSpritesheet(3, ICON_ROOT .. iconPng)
+    popup:LoadGraphics()
+end
 
-    -- Charger le sprite d’item via ItemConfig (icône dynamique)
-    if state.iconItemId ~= nil then
-        local cfg = Isaac.GetItemConfig():GetCollectible(state.iconItemId)
-        if cfg and cfg.GfxFileName then
-            -- Pattern recommandé : remplacer la spritesheet 1 du 005.100_Collectible.anm2
-            icon:ReplaceSpritesheet(1, cfg.GfxFileName)   -- injecte le PNG vanilla de l’item
-            icon:LoadGraphics()                           -- recharger les textures
-            icon:Play("Idle", true)
+
+local function gotoPhase(phase)
+    state.phase = phase
+    Logger.logValue("[phase] => " .. phase)
+
+    if phase == "Appear" then
+        if state.sfx and not state.sfxPlayed and SFX_ID ~= nil then
+            sfx:Play(SFX_ID, 1.0, 0, false, 1.0)
+            state.sfxPlayed = true
         end
+        popup:Play("Appear", true)
+    elseif phase == "Idle" then
+        state.ttl = state.maxTtl
+        popup:Play(phase, true)
+    elseif phase == "Dissapear" then
+        popup:Play(phase, true)
     end
 end
 
---- Indique si la popup est active
-function FakeAchievementPopup.IsActive()
-    return state.active and state.ttl > 0
+function FakeAchievementPopup.Show(params)
+    if state.active then return end
+
+    params = params or {}
+    local iconName = assert(params.image, "[AchievementPopup] 'image' is required")
+
+    loadPopupSprites(iconName .. ".png")
+
+    state.ttl       = state.maxTtl
+    state.sfxPlayed = false
+    state.active    = true
+
+    gotoPhase("Appear")
 end
 
---- Ferme immédiatement la popup
+function FakeAchievementPopup.IsActive()
+    return state.active
+end
+
 function FakeAchievementPopup.Close()
     state.active = false
+    state.phase  = "none"
     state.ttl    = 0
 end
 
--- ====== Rendu (MC_POST_RENDER) ======
+-- ===== MC_POST_RENDER =====
 function FakeAchievementPopup.OnPostRender(_mod)
-    if not state.active or state.ttl <= 0 then return end
+    if not state.active then return end
+
+    if popup.Update then popup:Update() end
+    if state.phase == "Appear" then
+        if  popup:IsFinished("Appear") then
+            gotoPhase("Idle")
+        end
+    elseif state.phase == "Idle" then
+        state.ttl = state.ttl - 1
+        if state.ttl <= 0 then
+            gotoPhase("Dissapear")
+        end
+    elseif state.phase == "Dissapear" then
+        if popup.IsFinished and popup:IsFinished("Dissapear") then
+            state.active = false
+            state.phase  = "none"
+        end
+    end
 
     local scrW, scrH = Isaac.GetScreenWidth(), Isaac.GetScreenHeight()
-    local center = Vector(scrW / 2, scrH / 3)
-
-    -- Fade/scale très léger
-    local t     = state.ttl / state.maxTtl
-    local alpha = math.max(0, t)
-    local scale = 1.0 + 0.05 * (1.0 - t)
-
-    -- Papier
-    paper.Color = Color(1, 1, 1, alpha, 0, 0, 0)
-    paper.Scale = Vector(scale, scale)
-    paper:Render(center, Vector.Zero, Vector.Zero)
-
-    -- Icône d’item (si dispo)
-    if state.iconItemId ~= nil then
-        local icoPos = center + Vector(-120, -10)
-        icon.Color  = Color(1, 1, 1, alpha, 0, 0, 0)
-        icon.Scale = Vector(1.0, 1.0)
-        icon:Render(icoPos, Vector.Zero, Vector.Zero)
-    end
-
-    -- Texte
-    local titleColor    = KColor(0, 0, 0, alpha, 0, 0, 0)
-    local subtitleColor = KColor(0, 0, 0, alpha, 0, 0, 0)
-    font:DrawStringScaledUTF8(state.title,    center.X - 30, center.Y - 40, 1.0, 1.0, titleColor,    0, true)
-    font:DrawStringScaledUTF8(state.subtitle, center.X - 30, center.Y - 15, 1.0, 1.0, subtitleColor, 0, true)
-
-    -- Countdown
-    state.ttl = state.ttl - 1
-    if state.ttl <= 0 then
-        state.active = false
-    end
+    local center = Vector(scrW/2, scrH/3)
+    popup:Render(center, Vector.Zero, Vector.Zero)
 end
 
 function FakeAchievementPopup.Init(mod)
     mod:AddCallback(ModCallbacks.MC_POST_RENDER, FakeAchievementPopup.OnPostRender)
 end
-
-return FakeAchievementPopup

@@ -5,14 +5,7 @@ OnKillAchievement = {}
 
 -- Callback : MC_POST_ENTITY_KILL
 function OnKillAchievement.OnPostEntityKill(_mod, entity)
-    Logger.logValue("==== OnKillAchievement: enemy killed, show fake popup ====")
-
-    FakeAchievementPopup.Show({
-        title    = "TU ES RACISTE",
-        subtitle = "\"ET OUAIS\"",
-        itemId   = CollectibleType.COLLECTIBLE_FORGET_ME_NOW,
-        duration = 120
-    })
+    FakeAchievementPopup.Show({ image = "achievement_planetarium" })
 end
 
 function OnKillAchievement.Init(mod)

@@ -5,7 +5,7 @@ ItemRoomReplacer = {}
 -- Callback : MC_PRE_GET_COLLECTIBLE
 function ItemRoomReplacer.OnPreGetCollectible(mod, poolType, decrease, seed)
     if Game():GetRoom():GetType() == RoomType.ROOM_TREASURE then
-        return CollectibleType.COLLECTIBLE_BREAKFAST
+        return CollectibleType.COLLECTIBLE_SACRED_HEART
     end
 end
 
