@@ -6,7 +6,10 @@ local ItemManager = {}
 local Items = {}
 
 function ItemManager.isItemUnlocked(id)
-    return SaveManager.items and SaveManager.items[id] and SaveManager.items[id].isUnlocked == true
+    local stringifiedId = tostring(id)
+    return SaveManager.items
+        and SaveManager.items[stringifiedId]
+        and SaveManager.items[stringifiedId].isUnlocked == true
 end
 
 function ItemManager.pickRandomLockedItem()
@@ -21,7 +24,7 @@ function ItemManager.pickRandomLockedItem()
 end
 
 function ItemManager.unlockItem(item)
-    SaveManager.items[item.id] = { name = item.name, isUnlocked = true }
+    SaveManager.items[tostring(item.id)] = { name = item.name, isUnlocked = true }
     local ok = SaveManager.saveDatas()
     if ok then
         FakeAchievementPopup.Show({ sprite = item.unlockSprite })

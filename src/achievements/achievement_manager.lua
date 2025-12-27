@@ -7,11 +7,14 @@ local MOD_REF
 local AchievementManager = {}
 
 function AchievementManager.isAchievementUnlocked(id)
-    return SaveManager.achievements and SaveManager.achievements[id] and SaveManager.achievements[id].isAchieve == true
+    local stringifiedId = tostring(id)
+    return SaveManager.achievements
+        and SaveManager.achievements[stringifiedId]
+        and SaveManager.achievements[stringifiedId].isAchieve == true
 end
 
 function AchievementManager.unlockAchievement(id, name)
-    SaveManager.achievements[id] = { name = name, isAchieve = true }
+    SaveManager.achievements[tostring(id)] = { name = name, isAchieve = true }
     local ok = SaveManager.saveDatas()
     if ok then
         ItemManager.unlockItem(ItemManager.pickRandomLockedItem())

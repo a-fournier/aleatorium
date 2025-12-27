@@ -14,9 +14,16 @@ function loadDatas()
     end
 end
 
+function getNonSerializedDatas()
+    return {
+        achievements = SaveManager.achievements,
+        items = SaveManager.items
+    }
+end
+
 function SaveManager.saveDatas()
-    Logger.debug("BEFORE ENCODE", SaveManager)
-    local ok, encoded = pcall(json.encode, SaveManager)
+    Logger.debug("BEFORE ENCODE", getNonSerializedDatas())
+    local ok, encoded = pcall(json.encode, getNonSerializedDatas())
     Logger.debug("AFTER ENCODE", encoded)
     if ok then
         MOD_REF:SaveData(encoded)
