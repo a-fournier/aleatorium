@@ -6,7 +6,7 @@ local ItemManager = {}
 local Items = {}
 
 function ItemManager.isItemUnlocked(id)
-    return ItemManager.items[id] and ItemManager.items[id].isUnlocked == true
+    return ItemManager.items and ItemManager.items[id] and ItemManager.items[id].isUnlocked == true
 end
 
 function ItemManager.unlockItem(id, name)

@@ -5,7 +5,7 @@ local MOD_REF
 local AchievementManager = {}
 
 function AchievementManager.isAchievementUnlocked(id)
-    return AchievementManager.achievements[id] and AchievementManager.achievements[id].isAchieve == true
+    return AchievementManager.achievements and AchievementManager.achievements[id] and AchievementManager.achievements[id].isAchieve == true
 end
 
 function AchievementManager.unlockAchievement(id, name)
