@@ -15,7 +15,7 @@ function Item:new(id, name, achievement, unlockSprite)
     o.name = name
     o.achievement = achievement
     o.unlockSprite = unlockSprite
-    o.isUnlocked = ItemManager.isItemUnlocked()
+    o.isUnlocked = ItemManager.isItemUnlocked(o.id)
     Logger.debug("Item registered:", o.name, o.isUnlocked)
     return o
 end
