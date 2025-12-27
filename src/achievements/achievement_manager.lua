@@ -7,14 +7,13 @@ local MOD_REF
 local AchievementManager = {}
 
 function AchievementManager.isAchievementUnlocked(id)
-    local stringifiedId = tostring(id)
     return SaveManager.achievements
-        and SaveManager.achievements[stringifiedId]
-        and SaveManager.achievements[stringifiedId].isAchieve == true
+        and SaveManager.achievements[id]
+        and SaveManager.achievements[id].isAchieve == true
 end
 
 function AchievementManager.unlockAchievement(id, name)
-    SaveManager.achievements[tostring(id)] = { name = name, isAchieve = true }
+    SaveManager.achievements[id] = { name = name, isAchieve = true }
     local ok = SaveManager.saveDatas()
     if ok then
         ItemManager.unlockItem(ItemManager.pickRandomLockedItem())
@@ -23,7 +22,7 @@ end
 
 function registerAchievements()
     require("src/achievements/list/on_kill_achievement")
-            :new(MOD_REF, 1, "on_kill", "achievement_planetarium")
+            :new(MOD_REF, "1", "on_kill", "achievement_planetarium")
             :register()
 end
 

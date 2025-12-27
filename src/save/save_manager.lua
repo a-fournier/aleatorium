@@ -10,7 +10,8 @@ local SaveManager = {
 function loadDatas()
     if MOD_REF:HasData() then
         local ok, decoded = pcall(json.decode, MOD_REF:LoadData())
-        SaveManager = decoded
+        SaveManager.achievements = decoded.achievements or {}
+        SaveManager.items = decoded.items or {}
     end
 end
 
@@ -22,9 +23,7 @@ function getNonSerializedDatas()
 end
 
 function SaveManager.saveDatas()
-    Logger.debug("BEFORE ENCODE", getNonSerializedDatas())
     local ok, encoded = pcall(json.encode, getNonSerializedDatas())
-    Logger.debug("AFTER ENCODE", encoded)
     if ok then
         MOD_REF:SaveData(encoded)
     end
