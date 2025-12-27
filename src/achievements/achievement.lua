@@ -1,5 +1,4 @@
 local AchievementManager = require("src/achievements/achievement_manager")
-local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local Logger = require("src/utils/logger")
 
 local Achievement = {}
@@ -49,7 +48,6 @@ end
 function Achievement:onAchieve()
     if not AchievementManager.isAchievementUnlocked(self.id) and not self.didShowThisRun then
         self.didShowThisRun = true
-        FakeAchievementPopup.Show({ sprite = self.sprite })
         AchievementManager.unlockAchievement(self.id, self.name)
     end
 end

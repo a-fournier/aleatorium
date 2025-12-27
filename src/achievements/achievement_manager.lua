@@ -1,4 +1,5 @@
 local json = require("json")
+local ItemManager = require("src/items/item_manager")
 local Logger = require("src/utils/logger")
 
 local MOD_REF
@@ -13,6 +14,7 @@ function AchievementManager.unlockAchievement(id, name)
     local ok, encoded = pcall(json.encode, AchievementManager)
     if ok then
         MOD_REF:SaveData(encoded)
+        ItemManager.unlockItem(ItemManager.pickRandomLockedItem())
     end
 end
 

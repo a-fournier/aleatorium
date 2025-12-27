@@ -1,4 +1,5 @@
 local json = require("json")
+local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local Logger = require("src/utils/logger")
 
 local MOD_REF
@@ -9,11 +10,23 @@ function ItemManager.isItemUnlocked(id)
     return ItemManager.items and ItemManager.items[id] and ItemManager.items[id].isUnlocked == true
 end
 
-function ItemManager.unlockItem(id, name)
-    ItemManager.items[id] = { name = name, isUnlocked = true }
+function ItemManager.pickRandomLockedItem()
+    local lockedItems = {}
+    for id, item in pairs(Items) do
+        if not item.isUnlocked then
+            table.insert(lockedItems, item)
+        end
+    end
+    local randomIndex = math.random(1, #lockedItems)
+    return lockedItems[randomIndex]
+end
+
+function ItemManager.unlockItem(item)
+    ItemManager.items[item.id] = { name = item.name, isUnlocked = true }
     local ok, encoded = pcall(json.encode, ItemManager)
     if ok then
         MOD_REF:SaveData(encoded)
+        FakeAchievementPopup.Show({ sprite = item.unlockSprite })
     end
 end
 
