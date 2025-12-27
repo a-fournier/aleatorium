@@ -1,33 +1,21 @@
 local json = require("json")
 local ItemManager = require("src/items/item_manager")
 local Logger = require("src/utils/logger")
+local SaveManager = require("src/save/save_manager")
 
 local MOD_REF
-local AchievementManager = {
-    achievements = {}
-}
+local AchievementManager = {}
 
 function AchievementManager.isAchievementUnlocked(id)
-    return AchievementManager.achievements and AchievementManager.achievements[id] and AchievementManager.achievements[id].isAchieve == true
+    return SaveManager.achievements and SaveManager.achievements[id] and SaveManager.achievements[id].isAchieve == true
 end
 
 function AchievementManager.unlockAchievement(id, name)
-    AchievementManager.achievements[id] = { name = name, isAchieve = true }
-    local ok, encoded = pcall(json.encode, AchievementManager)
+    SaveManager.achievements[id] = { name = name, isAchieve = true }
+    local ok = SaveManager.saveDatas()
     if ok then
-        MOD_REF:SaveData(encoded)
         ItemManager.unlockItem(ItemManager.pickRandomLockedItem())
     end
-end
-
-function loadAchievements()
-    if MOD_REF:HasData() then
-        local ok, decoded = pcall(json.decode, MOD_REF:LoadData())
-        AchievementManager.achievements = decoded.achievements
-    else
-        AchievementManager.achievements = {}
-    end
-    registerAchievements()
 end
 
 function registerAchievements()
@@ -38,7 +26,7 @@ end
 
 function AchievementManager.register(mod)
     MOD_REF = mod
-    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, loadAchievements)
+    registerAchievements()
 end
 
 return AchievementManager

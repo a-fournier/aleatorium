@@ -9,7 +9,6 @@ Item.__index = Item
 -- @param achievement number
 -- @param unlockSprite string
 function Item:new(id, name, achievement, unlockSprite)
-    Logger.debug("Registering item:", id, name, achievement, unlockSprite)
     -- Initialize properties
     local o = setmetatable({}, self)
     o.id = id
@@ -17,7 +16,7 @@ function Item:new(id, name, achievement, unlockSprite)
     o.achievement = achievement
     o.unlockSprite = unlockSprite
     o.isUnlocked = ItemManager.isItemUnlocked()
-    Logger.debug("Item registered:", o, o.isUnlocked)
+    Logger.debug("Item registered:", o.name, o.isUnlocked)
     return o
 end
 

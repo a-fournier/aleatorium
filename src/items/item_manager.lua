@@ -1,15 +1,12 @@
-local json = require("json")
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local Logger = require("src/utils/logger")
+local SaveManager = require("src/save/save_manager")
 
-local MOD_REF
-local ItemManager = {
-    items = {}
-}
+local ItemManager = {}
 local Items = {}
 
 function ItemManager.isItemUnlocked(id)
-    return ItemManager.items and ItemManager.items[id] and ItemManager.items[id].isUnlocked == true
+    return SaveManager.items and SaveManager.items[id] and SaveManager.items[id].isUnlocked == true
 end
 
 function ItemManager.pickRandomLockedItem()
@@ -24,34 +21,19 @@ function ItemManager.pickRandomLockedItem()
 end
 
 function ItemManager.unlockItem(item)
-    ItemManager.items[item.id] = { name = item.name, isUnlocked = true }
-    local ok, encoded = pcall(json.encode, ItemManager)
+    SaveManager.items[item.id] = { name = item.name, isUnlocked = true }
+    local ok = SaveManager.saveDatas()
     if ok then
-        MOD_REF:SaveData(encoded)
         FakeAchievementPopup.Show({ sprite = item.unlockSprite })
     end
 end
 
-function loadItems()
-    Logger.debug("Loading items data...")
-    if MOD_REF:HasData() then
-        local ok, decoded = pcall(json.decode, MOD_REF:LoadData())
-        ItemManager.items = decoded.items
-    else
-        ItemManager.items = {}
-    end
-    registerItems()
-end
-
 function registerItems()
-    Logger.debug("Items loaded")
     Items = require('src/items/items')
-    Logger.debug("Items", Items)
 end
 
-function ItemManager.register(mod)
-    MOD_REF = mod
-    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, loadItems)
+function ItemManager.register()
+    registerItems()
 end
 
 return ItemManager
