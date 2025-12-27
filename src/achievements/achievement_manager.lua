@@ -3,7 +3,9 @@ local ItemManager = require("src/items/item_manager")
 local Logger = require("src/utils/logger")
 
 local MOD_REF
-local AchievementManager = {}
+local AchievementManager = {
+    achievements = {}
+}
 
 function AchievementManager.isAchievementUnlocked(id)
     return AchievementManager.achievements and AchievementManager.achievements[id] and AchievementManager.achievements[id].isAchieve == true

@@ -3,7 +3,9 @@ local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local Logger = require("src/utils/logger")
 
 local MOD_REF
-local ItemManager = {}
+local ItemManager = {
+    items = {}
+}
 local Items = {}
 
 function ItemManager.isItemUnlocked(id)
