@@ -29,6 +29,7 @@ function ItemManager.unlockItem(item)
         Logger.warn("[ItemManager] No locked items available to unlock.")
         return
     end
+    Logger.debug("Try to unlock", item)
     item.isUnlocked = true
     SaveManager.items[item.id] = { name = item.name, isUnlocked = item.isUnlocked }
 

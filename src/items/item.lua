@@ -9,10 +9,13 @@ function Item:new(id, quality, pools, isDefaultUnlock, unlockSprite)
     local o = setmetatable({}, self)
     o.id = tostring(id)
     o.quality = quality
-    o.pools = {}
+    o.pools = pools
     o.unlockSprite = unlockSprite
-    o.isUnlocked = ItemManager.isItemUnlocked(o.id)
-    o.haveSeen = false
+    o.isUnlocked = isDefaultUnlock
+    if not isDefaultUnlock then
+        o.isUnlocked = ItemManager.isItemUnlocked(o.id)
+    end
+    o.didShowThisRun = false
     return o
 end
 
