@@ -60,4 +60,44 @@
 635 - A Strange Door
 637 - Dead God
 
+ITEMS
+6 - A Cube of Meat
+
+BOSSES
+16 - Something From The Future
+17 - Something Cute
+18 - Something Sticky
+66 - A Forgotten Horseman
+68 - Something Icky
+
+TRINKETS
+
+52 - Curved Horn
+55 - Blood Penny
+60 - Burnt Penny
+61 - Lucky Toe
+64 - Counterfeit Coin
+70 - Isaac's Head
+71 - Maggy's Faith
+72 - Judas'Tongue
+73 - ???'s Soul
+74 - Samson's Lock
+75 - Cain's Eye
+76 - Eve's Bird Foot
+77 - The Left Hand
+85 - Lucky Rock
+
+CARDS & Runes
+89 - Rune of Hagalaz
+90 - Rune of Jera
+91 - Rune of Ehwaz
+92 - Rune of Dagaz
+93 - Rune of Ansuz
+94 - Rune of Perthro
+95 - Rune of Berkano
+96 - Rune of Algiz
+97 - Chaos Card
+98 - Credit Card
+99 - Rules Card
+100 - Card Against Humanity
 
