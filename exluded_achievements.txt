@@ -27,6 +27,7 @@
 152 - Store Upgrade lv.2
 153 - Store Upgrade lv.3
 154 - Store Upgrade lv.4
+155 - Angels
 199 - Lilith
 234 - Blue Womb
 235 - 1001%
@@ -69,6 +70,7 @@ BOSSES
 18 - Something Sticky
 66 - A Forgotten Horseman
 68 - Something Icky
+142 - Krampus
 
 TRINKETS
 
@@ -86,6 +88,15 @@ TRINKETS
 76 - Eve's Bird Foot
 77 - The Left Hand
 85 - Lucky Rock
+101 - Swallowed Penny
+111 - Black Lipstick
+117 - Broken Ankh
+118 - Store Credit
+123 - Mysterious Paper
+127 - Daemon's Tail
+185 - Blind Rage
+196 - Cracked Dice
+197 - Black feather
 
 CARDS & Runes
 89 - Rune of Hagalaz
@@ -100,4 +111,5 @@ CARDS & Runes
 98 - Credit Card
 99 - Rules Card
 100 - Card Against Humanity
+120 - Suicide King
 
