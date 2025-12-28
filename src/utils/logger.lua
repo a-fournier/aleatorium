@@ -13,6 +13,18 @@ function dump(o)
     end
 end
 
+function Logger.warn(...)
+    local args = table.pack(...)
+    local parts = {}
+
+    for i = 1, args.n do
+        parts[#parts + 1] = dump(args[i])
+    end
+
+    local msg = "[WARN] - " .. table.concat(parts, ": ") .. "\n"
+    Isaac.DebugString(msg)
+end
+
 function Logger.debug(...)
     local args = table.pack(...)
     local parts = {}

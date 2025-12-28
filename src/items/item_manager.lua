@@ -17,11 +17,18 @@ function ItemManager.pickRandomLockedItem()
             table.insert(lockedItems, item)
         end
     end
+    if #lockedItems == 0 then
+        return nil
+    end
     local randomIndex = math.random(1, #lockedItems)
     return lockedItems[randomIndex]
 end
 
 function ItemManager.unlockItem(item)
+    if item == nil then
+        Logger.warn("[ItemManager] No locked items available to unlock.")
+        return
+    end
     item.isUnlocked = true
     SaveManager.items[item.id] = { name = item.name, isUnlocked = item.isUnlocked }
 
