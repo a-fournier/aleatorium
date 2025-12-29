@@ -107,7 +107,7 @@ return {
         {
             [CollectibleType.COLLECTIBLE_FATE] = 0.5,
             [CollectibleType.COLLECTIBLE_LEAD_PENCIL] = 0.1,
-            [CollectibleType.COLLECTIBLE_ORPHAN_SOCKS] = 0.1,
+            [CollectibleType.COLLECTIBLE_SOCKS] = 0.1,
             [CollectibleType.COLLECTIBLE_PJS] = 0.5,
             [CollectibleType.COLLECTIBLE_SCHOOLBAG] = 0.5,
         }
@@ -217,7 +217,7 @@ return {
             [CollectibleType.COLLECTIBLE_SKELETON_KEY] = 0.1,
             [CollectibleType.COLLECTIBLE_SOUL] = 0.2,
             [CollectibleType.COLLECTIBLE_SPINDOWN_DICE] = 0.1,
-            [CollectibleType.COLLECTIBLE_STRAWMAN] = 0.5,
+            [CollectibleType.COLLECTIBLE_STRAW_MAN] = 0.5,
         }
     ),
     [ItemPoolType.POOL_GREED_SHOP] = Pool:new(
@@ -244,7 +244,7 @@ return {
             [CollectibleType.COLLECTIBLE_SPINDOWN_DICE] = 0.1,
             [CollectibleType.COLLECTIBLE_SPIRIT_SHACKLES] = 0.1,
             [CollectibleType.COLLECTIBLE_STOP_WATCH] = 0.1,
-            [CollectibleType.COLLECTIBLE_STRAWMAN] = 0.1,
+            [CollectibleType.COLLECTIBLE_STRAW_MAN] = 0.1,
             [CollectibleType.COLLECTIBLE_TMTRAINER] = 0.1,
         }
     ),
@@ -296,11 +296,11 @@ return {
             [CollectibleType.COLLECTIBLE_SACRED_ORB] = 0.5,
         }
     ),
-    [ItemPoolType.POOL_WOODEN_CHEST] = Pool.new(ItemPoolType.POOL_WOODEN_CHEST, 1, {}),
-    [ItemPoolType.POOL_PLANETARIUM] = Pool.new(ItemPoolType.POOL_PLANETARIUM, 1, {}),
-    [ItemPoolType.POOL_SHELL_GAME] = Pool:new(ItemPoolType.POOL_SHELL_GAME, 1, {}),
-    [ItemPoolType.POOL_BEGGAR] = Pool:new(ItemPoolType.POOL_BEGGAR, 0.5, {}),
-    [ItemPoolType.POOL_DEMON_BEGGAR] = Pool:new(ItemPoolType.POOL_DEMON_BEGGAR, 0.5, {}),
-    [ItemPoolType.POOL_ULTRA_SECRET] = Pool:new(ItemPoolType.POOL_ULTRA_SECRET, 0.4, {}),
-    [ItemPoolType.POOL_CRANE_GAME] = Pool:new(ItemPoolType.POOL_CRANE_GAME, 0.1, {}),
+    [ItemPoolType.POOL_WOODEN_CHEST] = Pool.new(ItemPoolType.POOL_WOODEN_CHEST, 1, nil),
+    [ItemPoolType.POOL_PLANETARIUM] = Pool.new(ItemPoolType.POOL_PLANETARIUM, 1, nil),
+    [ItemPoolType.POOL_SHELL_GAME] = Pool:new(ItemPoolType.POOL_SHELL_GAME, 1, nil),
+    [ItemPoolType.POOL_BEGGAR] = Pool:new(ItemPoolType.POOL_BEGGAR, 0.5, nil),
+    [ItemPoolType.POOL_DEMON_BEGGAR] = Pool:new(ItemPoolType.POOL_DEMON_BEGGAR, 0.5, nil),
+    [ItemPoolType.POOL_ULTRA_SECRET] = Pool:new(ItemPoolType.POOL_ULTRA_SECRET, 0.4, nil),
+    [ItemPoolType.POOL_CRANE_GAME] = Pool:new(ItemPoolType.POOL_CRANE_GAME, 0.1, nil),
 }

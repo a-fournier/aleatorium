@@ -8,7 +8,7 @@ local SerializedPools = {}
 
 function ItemManager.isItemUnlocked(id)
     local items = SaveManager.items
-    return items and items[id] and items[id].isUnlocked == true
+    return items and items[tostring(id)] and items[tostring(id)].isUnlocked == true
 end
 
 function ItemManager.pickRandomLockedItem()
@@ -32,7 +32,7 @@ function ItemManager.unlockItem(item)
     end
     Logger.debug("Try to unlock", item)
     item.isUnlocked = true
-    SaveManager.items[item.id] = { name = item.name, isUnlocked = item.isUnlocked }
+    SaveManager.items[tostring(item.id)] = { name = item.name, isUnlocked = item.isUnlocked }
 
     local ok = SaveManager.saveDatas()
     if ok then

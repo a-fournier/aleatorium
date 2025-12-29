@@ -7,7 +7,7 @@ Item.__index = Item
 function Item:new(id, pools, isDefaultUnlock, unlockSprite)
     -- Initialize properties
     local o = setmetatable({}, self)
-    o.id = tostring(id)
+    o.id = id
     o.pools = pools
     o.unlockSprite = unlockSprite
     o.isUnlocked = isDefaultUnlock
