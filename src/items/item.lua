@@ -4,11 +4,10 @@ local Logger = require("src/utils/logger")
 local Item = {}
 Item.__index = Item
 
-function Item:new(id, quality, pools, isDefaultUnlock, unlockSprite)
+function Item:new(id, pools, isDefaultUnlock, unlockSprite)
     -- Initialize properties
     local o = setmetatable({}, self)
     o.id = tostring(id)
-    o.quality = quality
     o.pools = pools
     o.unlockSprite = unlockSprite
     o.isUnlocked = isDefaultUnlock

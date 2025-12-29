@@ -43,8 +43,12 @@ function registerItems()
     SerializedItems = require('src/items/items')
 end
 
-function ItemManager.register()
+function ItemManager.getRandomItem(poolType, decrease, seed)
+end
+
+function ItemManager.register(mod)
     registerItems()
+    mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, ItemManager.getRandomItem)
 end
 
 return ItemManager
