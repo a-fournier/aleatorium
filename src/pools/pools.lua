@@ -3,6 +3,7 @@ local Pool = require("src/pools/pool")
 return {
     [ItemPoolType.POOL_TREASURE] = Pool:new(
         ItemPoolType.POOL_TREASURE,
+        1,
         {
             [CollectibleType.COLLECTIBLE_ASTRAL_PROJECTION] = 0.2,
             [CollectibleType.COLLECTIBLE_BODY] = 0.2,
@@ -28,6 +29,7 @@ return {
     ),
     [ItemPoolType.POOL_SHOP] = Pool:new(
         ItemPoolType.POOL_SHOP,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_BLANK_CARD] = 0.5,
             [CollectibleType.COLLECTIBLE_CARD_READING] = 0.5,
@@ -42,6 +44,7 @@ return {
     ),
     [ItemPoolType.POOL_LIBRARY] = Pool:new(
         ItemPoolType.POOL_LIBRARY,
+        0.1,
         {
             [CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = 0.2,
             [CollectibleType.COLLECTIBLE_LEMEGETON] = 0.2,
@@ -49,6 +52,7 @@ return {
     ),
     [ItemPoolType.POOL_CURSE] = Pool:new(
         ItemPoolType.POOL_CURSE,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_FALSE_PHD] = 0.5,
             [CollectibleType.COLLECTIBLE_HEARTBREAK] = 0.5,
@@ -58,6 +62,7 @@ return {
     ),
     [ItemPoolType.POOL_BOSS] = Pool:new(
         ItemPoolType.POOL_BOSS,
+        1,
         {
             [CollectibleType.COLLECTIBLE_PJS] = 0.5,
             [CollectibleType.COLLECTIBLE_SUPER_BANDAGE] = 0.5,
@@ -65,6 +70,7 @@ return {
     ),
     [ItemPoolType.POOL_SECRET] = Pool:new(
         ItemPoolType.POOL_SECRET,
+        1,
         {
             [CollectibleType.COLLECTIBLE_SACRED_ORB] = 0.5,
             [CollectibleType.COLLECTIBLE_VANISHING_TWIN] = 0.5,
@@ -72,6 +78,7 @@ return {
     ),
     [ItemPoolType.POOL_DEVIL] = Pool:new(
         ItemPoolType.POOL_DEVIL,
+        1,
         {
             [CollectibleType.COLLECTIBLE_ABYSS] = 0.5,
             [CollectibleType.COLLECTIBLE_BERSERK] = 0.5,
@@ -86,6 +93,7 @@ return {
     ),
     [ItemPoolType.POOL_ANGEL] = Pool:new(
         ItemPoolType.POOL_ANGEL,
+        1,
         {
             [CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = 0.5,
             [CollectibleType.COLLECTIBLE_DELIRIOUS] = 0.4,
@@ -95,6 +103,7 @@ return {
     ),
     [ItemPoolType.POOL_GOLDEN_CHEST] = Pool:new(
         ItemPoolType.POOL_GOLDEN_CHEST,
+        0.4,
         {
             [CollectibleType.COLLECTIBLE_FATE] = 0.5,
             [CollectibleType.COLLECTIBLE_LEAD_PENCIL] = 0.1,
@@ -105,6 +114,7 @@ return {
     ),
     [ItemPoolType.POOL_RED_CHEST] = Pool:new(
         ItemPoolType.POOL_RED_CHEST,
+        0.4,
         {
             [CollectibleType.COLLECTIBLE_BLOOD_PUPPY] = 0.5,
             [CollectibleType.COLLECTIBLE_FALSE_PHD] = 0.2,
@@ -114,6 +124,7 @@ return {
     ),
     [ItemPoolType.POOL_DEMON_BEGGAR] = Pool:new(
         ItemPoolType.POOL_DEMON_BEGGAR,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_ABADDON] = 0.2,
             [CollectibleType.COLLECTIBLE_POUND_OF_FLESH] = 0.5,
@@ -125,6 +136,7 @@ return {
     ),
     [ItemPoolType.POOL_BOMB_BUM] = Pool:new(
         ItemPoolType.POOL_BOMB_BUM,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_BRIMSTONE_BOMBS] = 0.2,
             [CollectibleType.COLLECTIBLE_PYRO] = 0.2,
@@ -133,12 +145,14 @@ return {
     ),
     [ItemPoolType.POOL_KEY_MASTER] = Pool:new(
         ItemPoolType.POOL_KEY_MASTER,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_SKELETON_KEY] = 0.2,
         }
     ),
     [ItemPoolType.POOL_ROTTEN_BEGGAR] = Pool:new(
         ItemPoolType.POOL_ROTTEN_BEGGAR,
+        1,
         {
             [CollectibleType.COLLECTIBLE_DEAD_ONION] = 0.5,
             [CollectibleType.COLLECTIBLE_ROTTEN_TOMATO] = 0.5,
@@ -146,6 +160,7 @@ return {
     ),
     [ItemPoolType.POOL_BATTERY_BUM] = Pool:new(
         ItemPoolType.POOL_BATTERY_BUM,
+        1,
         {
             [CollectibleType.COLLECTIBLE_120_VOLT] = 0.1,
             [CollectibleType.COLLECTIBLE_JACOBS_LADDER] = 0.1,
@@ -153,6 +168,7 @@ return {
     ),
     [ItemPoolType.POOL_OLD_CHEST] = Pool:new(
         ItemPoolType.POOL_OLD_CHEST,
+        0.4,
         {
             [CollectibleType.COLLECTIBLE_DADS_RING] = 0.2,
             [CollectibleType.COLLECTIBLE_MOMS_KNIFE] = 0.2,
@@ -160,6 +176,7 @@ return {
     ),
     [ItemPoolType.POOL_MOMS_CHEST] = Pool:new(
         ItemPoolType.POOL_MOMS_CHEST,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_MOMS_KNIFE] = 0.1,
             [CollectibleType.COLLECTIBLE_RED_KEY] = 0.5,
@@ -167,6 +184,7 @@ return {
     ),
     [ItemPoolType.POOL_BABY_SHOP] = Pool:new(
         ItemPoolType.POOL_BABY_SHOP,
+        1,
         {
             [CollectibleType.COLLECTIBLE_GELLO] = 0.5,
             [CollectibleType.COLLECTIBLE_VANISHING_TWIN] = 0.5,
@@ -174,6 +192,7 @@ return {
     ),
     [ItemPoolType.POOL_GREED_TREASURE] = Pool:new(
         ItemPoolType.POOL_GREED_TREASURE,
+        1,
         {
             [CollectibleType.COLLECTIBLE_ANIMA_SOLA] = 0.1,
             [CollectibleType.COLLECTIBLE_BODY] = 0.2,
@@ -203,6 +222,7 @@ return {
     ),
     [ItemPoolType.POOL_GREED_SHOP] = Pool:new(
         ItemPoolType.POOL_GREED_SHOP,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_1UP] = 0.1,
             [CollectibleType.COLLECTIBLE_ANIMA_SOLA] = 0.1,
@@ -230,6 +250,7 @@ return {
     ),
     [ItemPoolType.POOL_GREED_CURSE] = Pool:new(
         ItemPoolType.POOL_GREED_CURSE,
+        0.5,
         {
             [CollectibleType.COLLECTIBLE_FALSE_PHD] = 0.5,
             [CollectibleType.COLLECTIBLE_HEARTBREAK] = 0.5,
@@ -238,6 +259,7 @@ return {
     ),
     [ItemPoolType.POOL_GREED_BOSS] = Pool:new(
         ItemPoolType.POOL_GREED_BOSS,
+        1,
         {
             [CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM] = 0.2,
             [CollectibleType.COLLECTIBLE_PJS] = 0.5,
@@ -247,12 +269,14 @@ return {
     ),
     [ItemPoolType.POOL_GREED_SECRET] = Pool:new(
         ItemPoolType.POOL_GREED_SECRET,
+        1,
         {
             [CollectibleType.COLLECTIBLE_SACRED_ORB] = 0.5,
         }
     ),
     [ItemPoolType.POOL_GREED_DEVIL] = Pool:new(
         ItemPoolType.POOL_GREED_DEVIL,
+        1,
         {
             [CollectibleType.COLLECTIBLE_ABYSS] = 0.5,
             [CollectibleType.COLLECTIBLE_BERSERK] = 0.5,
@@ -265,11 +289,18 @@ return {
     ),
     [ItemPoolType.POOL_GREED_ANGEL] = Pool:new(
         ItemPoolType.POOL_GREED_ANGEL,
+        1,
         {
             [CollectibleType.COLLECTIBLE_BOOK_OF_VIRTUES] = 0.5,
             [CollectibleType.COLLECTIBLE_DELIRIOUS] = 0.4,
             [CollectibleType.COLLECTIBLE_SACRED_ORB] = 0.5,
         }
     ),
-
+    [ItemPoolType.POOL_WOODEN_CHEST] = Pool.new(ItemPoolType.POOL_WOODEN_CHEST, 1, {}),
+    [ItemPoolType.POOL_PLANETARIUM] = Pool.new(ItemPoolType.POOL_PLANETARIUM, 1, {}),
+    [ItemPoolType.POOL_SHELL_GAME] = Pool:new(ItemPoolType.POOL_SHELL_GAME, 1, {}),
+    [ItemPoolType.POOL_BEGGAR] = Pool:new(ItemPoolType.POOL_BEGGAR, 0.5, {}),
+    [ItemPoolType.POOL_DEMON_BEGGAR] = Pool:new(ItemPoolType.POOL_DEMON_BEGGAR, 0.5, {}),
+    [ItemPoolType.POOL_ULTRA_SECRET] = Pool:new(ItemPoolType.POOL_ULTRA_SECRET, 0.4, {}),
+    [ItemPoolType.POOL_CRANE_GAME] = Pool:new(ItemPoolType.POOL_CRANE_GAME, 0.1, {}),
 }

@@ -4,6 +4,7 @@ local SaveManager = require("src/save/save_manager")
 
 local ItemManager = {}
 local SerializedItems = {}
+local SerializedPools = {}
 
 function ItemManager.isItemUnlocked(id)
     local items = SaveManager.items
@@ -43,11 +44,19 @@ function registerItems()
     SerializedItems = require('src/items/items')
 end
 
-function ItemManager.getRandomItem(poolType, decrease, seed)
+function registerPools()
+    SerializedPools = require('src/pools/pools')
+end
+
+function ItemManager.getRandomItem(_, poolType, decrease, seed)
+    Logger.debug("[[GET RANDOM ITEM] Pooltype", poolType)
+    Logger.debug("[[GET RANDOM ITEM] Decrease", decrease)
+    Logger.debug("[[GET RANDOM ITEM] seed", seed)
 end
 
 function ItemManager.register(mod)
     registerItems()
+    registerPools()
     mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, ItemManager.getRandomItem)
 end
 
