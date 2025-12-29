@@ -1,4 +1,5 @@
 local Item = require("src/items/item")
+local Logger = require("src/utils/logger")
 
 return {
     -- REBIRTH ITEMS
@@ -13,7 +14,7 @@ return {
     [CollectibleType.COLLECTIBLE_SKATOLE] = Item:new(CollectibleType.COLLECTIBLE_SKATOLE, {ItemPoolType.POOL_NULL}, true, nil),
     [CollectibleType.COLLECTIBLE_HALO_OF_FLIES] = Item:new(CollectibleType.COLLECTIBLE_HALO_OF_FLIES, {ItemPoolType.POOL_TREASURE, ItemPoolType.POOL_KEY_MASTER}, true, nil),
     [CollectibleType.COLLECTIBLE_1UP] = Item:new(CollectibleType.COLLECTIBLE_1UP, {ItemPoolType.POOL_SECRET}, true, nil),
-    [CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM] = Item:new(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, {ItemPoolType.POOL_TREASURE}, true, nil),
+    [CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM] = Item:new(CollectibleType.COLLECTIBLE_MAGIC_MUSHROOM, {ItemPoolType.POOL_TREASURE, ItemPoolType.POOL_GREED_BOSS}, true, nil),
     [CollectibleType.COLLECTIBLE_VIRUS] = Item:new(CollectibleType.COLLECTIBLE_VIRUS, {ItemPoolType.POOL_TREASURE, ItemPoolType.POOL_DEMON_BEGGAR}, true, nil),
     [CollectibleType.COLLECTIBLE_ROID_RAGE] = Item:new(CollectibleType.COLLECTIBLE_ROID_RAGE, {ItemPoolType.POOL_TREASURE, ItemPoolType.POOL_BOSS, ItemPoolType.POOL_DEMON_BEGGAR}, true, nil),
     [CollectibleType.COLLECTIBLE_HEART] = Item:new(CollectibleType.COLLECTIBLE_HEART, {ItemPoolType.POOL_TREASURE}, true, nil),
@@ -335,7 +336,7 @@ return {
     [CollectibleType.COLLECTIBLE_CAFFEINE_PILL] = Item:new(CollectibleType.COLLECTIBLE_CAFFEINE_PILL, {ItemPoolType.POOL_BOSS}, true, nil),
     [CollectibleType.COLLECTIBLE_TORN_PHOTO] = Item:new(CollectibleType.COLLECTIBLE_TORN_PHOTO, {ItemPoolType.POOL_BOSS, ItemPoolType.POOL_GOLDEN_CHEST}, true, nil),
     [CollectibleType.COLLECTIBLE_BLUE_CAP] = Item:new(CollectibleType.COLLECTIBLE_BLUE_CAP, {ItemPoolType.POOL_BOSS}, true, nil),
-    [CollectibleType.COLLECTIBLE_LATCH_KEY] = Item:new(CollectibleType.COLLECTIBLE_LATCH_KEY, {ItemPoolType.POOL_BOSS, ItemPoolType.POOL_GOLDEN_CHEST, ItemPoolType.POOL_KEY_MASTER}, true, nil),
+    [CollectibleType.COLLECTIBLE_LATCH_KEY] = Item:new(CollectibleType.COLLECTIBLE_LATCH_KEY, {ItemPoolType.POOL_BOSS, ItemPoolType.POOL_GOLDEN_CHEST, ItemPoolType.POOL_KEY_MASTER, ItemPoolType.POOL_GREED_BOSS}, true, nil),
     [CollectibleType.COLLECTIBLE_MATCH_BOOK] = Item:new(CollectibleType.COLLECTIBLE_MATCH_BOOK, {ItemPoolType.POOL_BOSS, ItemPoolType.POOL_GOLDEN_CHEST}, true, nil),
     [CollectibleType.COLLECTIBLE_SYNTHOIL] = Item:new(CollectibleType.COLLECTIBLE_SYNTHOIL, {ItemPoolType.POOL_BOSS}, true, nil),
     [CollectibleType.COLLECTIBLE_SNACK] = Item:new(CollectibleType.COLLECTIBLE_SNACK, {ItemPoolType.POOL_BOSS}, true, nil),

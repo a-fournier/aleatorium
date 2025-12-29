@@ -1,6 +1,7 @@
 local AchievementManager = require("src/achievements/achievement_manager")
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local ItemManager = require("src/items/item_manager")
+local PoolManager = require("src/pools/pool_manager")
 local SaveManager = require("src/save/save_manager")
 
 local MOD_REF
@@ -11,6 +12,7 @@ local ModManager = {}
 function loadModules()
     SaveManager.register(MOD_REF)
     ItemManager.register(MOD_REF)
+    PoolManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)
     FakeAchievementPopup.register(MOD_REF)
 end

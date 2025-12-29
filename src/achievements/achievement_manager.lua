@@ -1,4 +1,3 @@
-local json = require("json")
 local ItemManager = require("src/items/item_manager")
 local Logger = require("src/utils/logger")
 local SaveManager = require("src/save/save_manager")

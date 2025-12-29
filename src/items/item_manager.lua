@@ -2,9 +2,9 @@ local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local Logger = require("src/utils/logger")
 local SaveManager = require("src/save/save_manager")
 
+local MOD_REF
 local ItemManager = {}
 local SerializedItems = {}
-local SerializedPools = {}
 
 function ItemManager.isItemUnlocked(id)
     local items = SaveManager.items
@@ -44,20 +44,9 @@ function registerItems()
     SerializedItems = require('src/items/items')
 end
 
-function registerPools()
-    SerializedPools = require('src/pools/pools')
-end
-
-function ItemManager.getRandomItem(_, poolType, decrease, seed)
-    Logger.debug("[[GET RANDOM ITEM] Pooltype", poolType)
-    Logger.debug("[[GET RANDOM ITEM] Decrease", decrease)
-    Logger.debug("[[GET RANDOM ITEM] seed", seed)
-end
-
 function ItemManager.register(mod)
+    MOD_REF = mod
     registerItems()
-    registerPools()
-    mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, ItemManager.getRandomItem)
 end
 
 return ItemManager
