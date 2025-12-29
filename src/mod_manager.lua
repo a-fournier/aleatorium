@@ -10,7 +10,7 @@ local ModManager = {}
 -- order matters here
 function loadModules()
     SaveManager.register(MOD_REF)
-    ItemManager.register()
+    ItemManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)
     FakeAchievementPopup.register(MOD_REF)
 end
