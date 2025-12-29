@@ -296,11 +296,11 @@ return {
             [CollectibleType.COLLECTIBLE_SACRED_ORB] = 0.5,
         }
     ),
-    [ItemPoolType.POOL_WOODEN_CHEST] = Pool.new(ItemPoolType.POOL_WOODEN_CHEST, 1, nil),
-    [ItemPoolType.POOL_PLANETARIUM] = Pool.new(ItemPoolType.POOL_PLANETARIUM, 1, nil),
-    [ItemPoolType.POOL_SHELL_GAME] = Pool:new(ItemPoolType.POOL_SHELL_GAME, 1, nil),
-    [ItemPoolType.POOL_BEGGAR] = Pool:new(ItemPoolType.POOL_BEGGAR, 0.5, nil),
-    [ItemPoolType.POOL_DEMON_BEGGAR] = Pool:new(ItemPoolType.POOL_DEMON_BEGGAR, 0.5, nil),
-    [ItemPoolType.POOL_ULTRA_SECRET] = Pool:new(ItemPoolType.POOL_ULTRA_SECRET, 0.4, nil),
-    [ItemPoolType.POOL_CRANE_GAME] = Pool:new(ItemPoolType.POOL_CRANE_GAME, 0.1, nil),
+    [ItemPoolType.POOL_WOODEN_CHEST] = Pool:new(ItemPoolType.POOL_WOODEN_CHEST, 1, {}),
+    [ItemPoolType.POOL_PLANETARIUM] = Pool:new(ItemPoolType.POOL_PLANETARIUM, 1, {}),
+    [ItemPoolType.POOL_SHELL_GAME] = Pool:new(ItemPoolType.POOL_SHELL_GAME, 1, {}),
+    [ItemPoolType.POOL_BEGGAR] = Pool:new(ItemPoolType.POOL_BEGGAR, 0.5, {}),
+    [ItemPoolType.POOL_DEMON_BEGGAR] = Pool:new(ItemPoolType.POOL_DEMON_BEGGAR, 0.5, {}),
+    [ItemPoolType.POOL_ULTRA_SECRET] = Pool:new(ItemPoolType.POOL_ULTRA_SECRET, 0.4, {}),
+    [ItemPoolType.POOL_CRANE_GAME] = Pool:new(ItemPoolType.POOL_CRANE_GAME, 0.1, {}),
 }
