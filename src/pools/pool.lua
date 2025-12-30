@@ -3,20 +3,15 @@ local Logger = require("src/utils/logger")
 local Pool = {}
 Pool.__index = Pool
 
-function Pool:new(id, decrement, weights)
+function Pool:new(id, decrementRatio)
     local o = setmetatable({}, self)
     o.id = id
-    o.decrement = decrement
-    o.weights = weights
+    o.decrementRatio = decrementRatio
     return o
 end
 
-function Pool:getItemWeight(id)
-    return self.weights[id] or 1
-end
-
 function Pool:decreaseItemWeight(id)
-    self.weights[id] = math.max(0, (self:getItemWeight(id)) - self.decrement)
+    Logger.debug("SHOULD DECREMENT")
 end
 
 return Pool

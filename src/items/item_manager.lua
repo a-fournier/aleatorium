@@ -40,6 +40,26 @@ function ItemManager.unlockItem(item)
     end
 end
 
+function ItemManager.buildPoolAvailableItems(pool)
+    local availableItems = {}
+    for _, item in pairs(SerializedItems) do
+        if item.isUnlocked and item.pools[pool] and item.pools[pool] > 0
+        then
+            availableItems[item.id] = { weight = item.pools[pool] }
+        end
+    end
+    return availableItems
+end
+
+function ItemManager.getRandomPoolItem(_, pool, decrease, seed)
+    Logger.debug("[[GET RANDOM ITEM] Pool", pool)
+    Logger.debug("[[GET RANDOM ITEM] Decrease", decrease)
+    Logger.debug("[[GET RANDOM ITEM] seed", seed)
+    local availableItems = ItemManager.buildPoolAvailableItems(pool)
+    Logger.debug(availableItems)
+    Logger.debug(# availableItems)
+end
+
 function registerItems()
     SerializedItems = require('src/items/items')
 end
@@ -47,6 +67,7 @@ end
 function ItemManager.register(mod)
     MOD_REF = mod
     registerItems()
+    mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, ItemManager.getRandomPoolItem)
 end
 
 return ItemManager
