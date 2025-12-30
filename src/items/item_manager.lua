@@ -45,7 +45,7 @@ function ItemManager.buildPoolAvailableItems(pool)
     for _, item in pairs(SerializedItems) do
         if item.isUnlocked and item.pools[pool] and item.pools[pool] > 0
         then
-            availableItems[item.id] = { weight = item.pools[pool] }
+            availableItems[item.id] = item.pools[pool]
         end
     end
     return availableItems
@@ -56,9 +56,46 @@ function ItemManager.getRandomPoolItem(_, pool, decrease, seed)
     Logger.debug("[[GET RANDOM ITEM] Decrease", decrease)
     Logger.debug("[[GET RANDOM ITEM] seed", seed)
     local availableItems = ItemManager.buildPoolAvailableItems(pool)
-    Logger.debug(availableItems)
-    Logger.debug(# availableItems)
+
+    -- 1) Calcul du poids total + liste triée des IDs (pour un résultat déterministe)
+    local totalWeight = 0
+    local ids = {}
+
+    for id, data in pairs(availableItems) do
+        local w = data or 0
+        if w > 0 then
+            totalWeight = totalWeight + w
+            ids[#ids + 1] = id
+        end
+    end
+
+    if totalWeight <= 0 or #ids == 0 then
+        Logger.debug("[[GET RANDOM ITEM] No available items for pool", pool)
+        return nil
+    end
+
+    table.sort(ids) -- important : ordre stable
+
+    -- 2) RNG (The Binding of Isaac)
+    local rng = RNG()
+    rng:SetSeed(seed, 35)
+
+    -- roll dans [0, totalWeight)
+    local roll = rng:RandomFloat() * totalWeight
+
+    -- 3) Sélection pondérée
+    local cumulative = 0
+    for _, id in ipairs(ids) do
+        local w = availableItems[id] or 0
+        cumulative = cumulative + w
+        if roll < cumulative then
+            local itemConfig = Isaac.GetItemConfig():GetCollectible(id)
+            Logger.debug("[[GET RANDOM ITEM] chosen", itemConfig.Name, "roll", roll, "totalWeight", totalWeight)
+            return id
+        end
+    end
 end
+
 
 function registerItems()
     SerializedItems = require('src/items/items')
