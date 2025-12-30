@@ -29,4 +29,16 @@ J'ai ajouté des items à débloquer
 Prochainement :
 
 Features :
-Ajouter tous les items à débloquer
+Refaire les pools d'items
+Passer les pools d'items en set {[ItemPoolType.POOL_BOSS] = true}
+
+[CollectibleType] = {
+    id: CollectibleType,
+    isUnlocked: bool,
+    pools: Set<{
+        [ItemPoolType] = number -- weight
+    }>,
+    achievement: string | nil
+}
+
+[CollectibleType.COLLECTIBLE_MOMS_RING] = Item:new(CollectibleType.COLLECTIBLE_MOMS_RING, {[ItemPoolType.POOL_SHOP] = 1, [ItemPoolType.POOL_GOLDEN_CHEST] = 1, [ItemPoolType.POOL_MOMS_CHEST] =, 1, [ItemPoolType.POOL_OLD_CHEST] = 1 }, true, nil),
