@@ -1,6 +1,8 @@
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local Logger = require("src/utils/logger")
+local Pools = require("src/pools/pools")
 local SaveManager = require("src/save/save_manager")
+local RngController = require("src/utils/rng_controller")
 
 local MOD_REF
 local ItemManager = {}
@@ -52,12 +54,7 @@ function ItemManager.buildPoolAvailableItems(pool)
 end
 
 function ItemManager.getRandomPoolItem(_, pool, decrease, seed)
-    Logger.debug("[[GET RANDOM ITEM] Pool", pool)
-    Logger.debug("[[GET RANDOM ITEM] Decrease", decrease)
-    Logger.debug("[[GET RANDOM ITEM] seed", seed)
     local availableItems = ItemManager.buildPoolAvailableItems(pool)
-
-    -- 1) Calcul du poids total + liste triée des IDs (pour un résultat déterministe)
     local totalWeight = 0
     local ids = {}
 
@@ -74,28 +71,22 @@ function ItemManager.getRandomPoolItem(_, pool, decrease, seed)
         return nil
     end
 
-    table.sort(ids) -- important : ordre stable
+    table.sort(ids)
+    local roll = RngController:RandomFloat(totalWeight)
 
-    -- 2) RNG (The Binding of Isaac)
-    local rng = RNG()
-    rng:SetSeed(seed, 35)
-
-    -- roll dans [0, totalWeight)
-    local roll = rng:RandomFloat() * totalWeight
-
-    -- 3) Sélection pondérée
     local cumulative = 0
     for _, id in ipairs(ids) do
         local w = availableItems[id] or 0
         cumulative = cumulative + w
         if roll < cumulative then
+            Logger.debug("Pool ratio", Pools[pool].decrementRatio)
+            Logger.debug("Serialized item before decrement", SerializedItems[id])
             local itemConfig = Isaac.GetItemConfig():GetCollectible(id)
-            Logger.debug("[[GET RANDOM ITEM] chosen", itemConfig.Name, "roll", roll, "totalWeight", totalWeight)
+            Logger.debug("[GET RANDOM ITEM] chosen", itemConfig.Name, "roll", roll, "totalWeight", totalWeight, "pool", pool, "seed", seed)
             return id
         end
     end
 end
-
 
 function registerItems()
     SerializedItems = require('src/items/items')

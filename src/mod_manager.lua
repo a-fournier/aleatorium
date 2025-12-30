@@ -1,6 +1,7 @@
 local AchievementManager = require("src/achievements/achievement_manager")
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local ItemManager = require("src/items/item_manager")
+local RngController = require("src/utils/rng_controller")
 local SaveManager = require("src/save/save_manager")
 
 local MOD_REF
@@ -9,6 +10,7 @@ local ModManager = {}
 -- Load all sub-managers when the game starts
 -- order matters here
 function loadModules()
+    RngController.register()
     SaveManager.register(MOD_REF)
     ItemManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)

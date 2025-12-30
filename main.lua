@@ -6,3 +6,6 @@ ModManager.register(Aleatorium)
 
 Isaac.DebugString("Aleatorium mod loaded !")
 
+
+
+
