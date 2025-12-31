@@ -21,6 +21,7 @@ function Achievement:new(mod, id, name, sprite)
     o.sprite = sprite
     o.didShowThisRun = false
 
+    -- TODO : check on continue
     -- Reset didShowThisRun on new game start
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() o.didShowThisRun = false end)
 

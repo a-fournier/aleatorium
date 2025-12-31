@@ -10,8 +10,4 @@ function Pool:new(id, decrementRatio)
     return o
 end
 
-function Pool:decreaseItemWeight(id)
-    Logger.debug("SHOULD DECREMENT")
-end
-
 return Pool

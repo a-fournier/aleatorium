@@ -1,6 +1,5 @@
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local Logger = require("src/utils/logger")
-local Pools = require("src/pools/pools")
 local SaveManager = require("src/save/save_manager")
 local RngController = require("src/utils/rng_controller")
 
@@ -29,10 +28,8 @@ end
 
 function ItemManager.unlockItem(item)
     if item == nil then
-        Logger.warn("[ItemManager] No locked items available to unlock.")
         return
     end
-    Logger.debug("Try to unlock", item)
     item.isUnlocked = true
     SaveManager.items[tostring(item.id)] = { name = item.name, isUnlocked = item.isUnlocked }
 
@@ -67,7 +64,7 @@ function ItemManager.getRandomPoolItem(_, pool, decrease, seed)
     end
 
     if totalWeight <= 0 or #ids == 0 then
-        Logger.debug("[[GET RANDOM ITEM] No available items for pool", pool)
+        Logger.debug("[GET RANDOM ITEM] No available items for pool", pool)
         return nil
     end
 
@@ -79,10 +76,9 @@ function ItemManager.getRandomPoolItem(_, pool, decrease, seed)
         local w = availableItems[id] or 0
         cumulative = cumulative + w
         if roll < cumulative then
-            Logger.debug("Pool ratio", Pools[pool].decrementRatio)
-            Logger.debug("Serialized item before decrement", SerializedItems[id])
             local itemConfig = Isaac.GetItemConfig():GetCollectible(id)
             Logger.debug("[GET RANDOM ITEM] chosen", itemConfig.Name, "roll", roll, "totalWeight", totalWeight, "pool", pool, "seed", seed)
+            if decrease then SerializedItems[id]:decrementWeight(pool) end
             return id
         end
     end
