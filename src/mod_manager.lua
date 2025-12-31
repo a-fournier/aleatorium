@@ -9,9 +9,9 @@ local ModManager = {}
 
 -- Load all sub-managers when the game starts
 -- order matters here
-function loadModules()
+function loadModules(isContinued)
+    SaveManager.register(MOD_REF, isContinued)
     RngController.register()
-    SaveManager.register(MOD_REF)
     ItemManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)
     FakeAchievementPopup.register(MOD_REF)
