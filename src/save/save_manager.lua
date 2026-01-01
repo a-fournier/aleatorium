@@ -3,7 +3,10 @@ local Logger = require("src/utils/logger")
 
 local MOD_REF
 local SaveManager = {
-    rng = { attempts = 0 },
+    current_game = {
+        rng = { streams = {} },
+        items = {}
+    },
     achievements = {},
     items = {}
 }
@@ -15,7 +18,7 @@ function loadDatas(isContinued)
         SaveManager.items = decoded.items or {}
 
         if isContinued then
-            SaveManager.rng = decoded.rng or { attempts = 0 }
+            SaveManager.current_game = decoded.current_game or SaveManager.current_game
         end
     end
 end
@@ -24,7 +27,7 @@ function getNonSerializedDatas()
     return {
         achievements = SaveManager.achievements,
         items = SaveManager.items,
-        rng = SaveManager.rng
+        current_game = SaveManager.current_game
     }
 end
 

@@ -1,24 +1,27 @@
 local Logger = require("src/utils/logger")
 local SaveManager = require("src/save/save_manager")
 
-local RNGController = { rng = nil }
+local RNGController = { }
 local RECOMMENDED_SHIFT_IDX = 35
 
-function RNGController:RandomFloat(max)
-    SaveManager.rng.attempts = SaveManager.rng.attempts + 1
-    return self.rng:RandomFloat() * (max or 1)
-end
-
-function RNGController.register()
+function getRNG(stream)
     local game = Game()
     local seeds = game:GetSeeds()
     local startSeed = seeds:GetStartSeed()
-    Logger.debug(SaveManager)
-    local attempts = SaveManager.rng.attempts or 0
-    Logger.debug(SaveManager.rng, attempts)
+    Logger.debug("seeds", seeds, "startSeed", startSeed)
 
-    RNGController.rng = RNG()
-    RNGController.rng:SetSeed(startSeed, RECOMMENDED_SHIFT_IDX + attempts)
+    local rng = RNG()
+    rng:SetSeed(startSeed, RECOMMENDED_SHIFT_IDX + stream)
+    return rng
+end
+
+function RNGController:RandomFloat(pool, max)
+    local currentStream = SaveManager.current_game.rng.streams[tostring(pool)] or 0
+    Logger.debug("pool", pool, "n", currentStream, "n+1=", currentStream + 1)
+    local rng = getRNG(currentStream)
+
+    SaveManager.current_game.rng.streams[tostring(pool)] = currentStream + 1
+    return rng:RandomFloat() * (max or 1)
 end
 
 return RNGController

@@ -1,7 +1,6 @@
 local AchievementManager = require("src/achievements/achievement_manager")
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local ItemManager = require("src/items/item_manager")
-local RngController = require("src/utils/rng_controller")
 local SaveManager = require("src/save/save_manager")
 
 local MOD_REF
@@ -11,7 +10,6 @@ local ModManager = {}
 -- order matters here
 function loadModules(isContinued)
     SaveManager.register(MOD_REF, isContinued)
-    RngController.register()
     ItemManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)
     FakeAchievementPopup.register(MOD_REF)

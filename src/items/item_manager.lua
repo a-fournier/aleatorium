@@ -31,7 +31,7 @@ function ItemManager.unlockItem(item)
         return
     end
     item.isUnlocked = true
-    SaveManager.items[tostring(item.id)] = { name = item.name, isUnlocked = item.isUnlocked }
+    SaveManager.items[tostring(item.id)] = { isUnlocked = item.isUnlocked }
 
     local ok = SaveManager.saveDatas()
     if ok then
@@ -69,7 +69,7 @@ function ItemManager.getRandomPoolItem(_, pool, decrease, seed)
     end
 
     table.sort(ids)
-    local roll = RngController:RandomFloat(totalWeight)
+    local roll = RngController:RandomFloat(pool, totalWeight)
 
     local cumulative = 0
     for _, id in ipairs(ids) do
