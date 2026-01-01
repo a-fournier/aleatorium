@@ -5,7 +5,7 @@ local MOD_REF
 local SaveManager = {
     current_game = {
         rng = { streams = {} },
-        items = {}
+        items = { }
     },
     achievements = {},
     items = {}

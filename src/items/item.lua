@@ -9,23 +9,29 @@ Item.__index = Item
 function Item:new(id, pools, isDefaultUnlock, unlockSprite)
     local o = setmetatable({}, self)
     o.id = id
-    o.pools = SaveManager.current_game.items[tostring(self.id)].pools or pools
+    o.pools = pools
     o.unlockSprite = unlockSprite
     o.isUnlocked = isDefaultUnlock
+
     if not isDefaultUnlock then
         o.isUnlocked = ItemManager.isItemUnlocked(o.id)
+    end
+
+    if SaveManager.current_game.items[tostring(id)] then
+        o.pools = SaveManager.current_game.items[tostring(id)].pools
+        Logger.debug("Loading saved pools for item ID " .. tostring(id), o.pools)
     end
     return o
 end
 
 function Item:decrementWeight(pool)
     local decrementRatio = Pools[pool] and Pools[pool].decrementRatio or 1
+    SaveManager.current_game.items[tostring(self.id)] = { pools = {} }
 
     for p, value in pairs(self.pools) do
         self.pools[p] = math.max(0, value - decrementRatio)
+        SaveManager.current_game.items[tostring(self.id)].pools[tostring(p)] = self.pools[p]
     end
-
-    SaveManager.current_game.items[tostring(self.id)] = { pools = self.pools }
 end
 
 return Item
