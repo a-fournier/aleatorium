@@ -26,30 +26,24 @@ function AchievementManager.saveAchievement(achievement)
     SaveManager.saveDatas()
 end
 
-function AchievementManager.unlockAchievement(id)
+function AchievementManager.unlockAchievement(id, nbItemToUnlock)
+    Logger.debug("Unlocking achievement: " .. tostring(id), nbItemToUnlock)
     SaveManager.achievements[id] = { isAchieve = true }
     local ok = SaveManager.saveDatas()
+
     if ok then
-        ItemManager.unlockItem(ItemManager.pickRandomLockedItem())
+        ItemManager.unlockNItems(nbItemToUnlock)
     end
 end
 
 function registerAchievements()
     local KillAchievement = require("src/achievements/kill_achievement")
 
-    KillAchievement:new(MOD_REF, 21, {
-        operator = 'AND',
+    KillAchievement:new(MOD_REF, 21, 3, {
+        operator = 'OR',
         [PlayerType.PLAYER_ISAAC] = {
             times = 1,
-            operator = 'AND',
-            entities = {
-                [EntityType.ENTITY_FLY] = 2,
-                [EntityType.ENTITY_POOTER] = 1
-            }
-        },
-        [PlayerType.PLAYER_CAIN] = {
-            times = 1,
-            operator = 'AND',
+            operator = 'OR',
             entities = {
                 [EntityType.ENTITY_FLY] = 2,
                 [EntityType.ENTITY_POOTER] = 1

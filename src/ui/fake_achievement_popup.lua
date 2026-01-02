@@ -15,6 +15,7 @@ local state = {
     alphaOut   = 0.25,
     sfx        = true,
     sfxPlayed  = false,
+    callback = nil
 }
 
 local sfx = SFXManager()
@@ -44,7 +45,7 @@ local function gotoPhase(phase)
     end
 end
 
-function FakeAchievementPopup.Show(params)
+function FakeAchievementPopup.Show(params, callback)
     if state.active then return end
 
     params = params or {}
@@ -55,6 +56,8 @@ function FakeAchievementPopup.Show(params)
     state.ttl       = state.maxTtl
     state.sfxPlayed = false
     state.active    = true
+    state.callback  = callback
+    Logger.debug(callback, state)
 
     gotoPhase("Appear")
 end
@@ -64,9 +67,10 @@ function FakeAchievementPopup.IsActive()
 end
 
 function FakeAchievementPopup.Close()
-    state.active = false
-    state.phase  = "none"
-    state.ttl    = 0
+    state.active   = false
+    state.phase    = "none"
+    state.ttl      = 0
+    state.callback = nil
 end
 
 -- ===== MC_POST_RENDER =====
@@ -87,6 +91,8 @@ function FakeAchievementPopup.OnPostRender(_mod)
         if popup:IsFinished("Dissapear") then
             state.active = false
             state.phase  = "none"
+            Logger.debug("[FakeAchievementPopup] Popup closed", state)
+            state.callback()
         end
     end
 
