@@ -6,7 +6,7 @@ local Achievement = {}
 Achievement.__index = Achievement
 Achievement.__is_abstract = true
 
-function Achievement:new(id, nbItemToUnlock, properties)
+function Achievement:new(id, unlock, properties)
     if self.__is_abstract then
         error("You can't create an instance of an abstract class, extend it instead", 2)
     end
@@ -15,7 +15,7 @@ function Achievement:new(id, nbItemToUnlock, properties)
     local o = setmetatable({}, self)
     o.mod = ModManager.getModRef()
     o.id = id
-    o.nbItemToUnlock = nbItemToUnlock
+    o.unlock = unlock
     o.properties = AchievementManager.getProperties(id, properties)
     o.didShowThisRun = false
 
@@ -47,7 +47,7 @@ end
 function Achievement:onAchieve()
     if not self:isAchieve() then
         self.didShowThisRun = true
-        AchievementManager.unlockAchievement(self.id, self.nbItemToUnlock)
+        AchievementManager.unlockAchievement(self.id, self.unlock)
     end
 end
 

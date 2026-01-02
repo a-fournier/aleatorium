@@ -1,3 +1,4 @@
+local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local ItemManager = require("src/items/item_manager")
 local Logger = require("src/utils/logger")
 local SaveManager = require("src/save/save_manager")
@@ -26,12 +27,17 @@ function AchievementManager.saveAchievement(achievement)
     SaveManager.saveDatas()
 end
 
-function AchievementManager.unlockAchievement(id, nbItemToUnlock)
+function AchievementManager.unlockAchievement(id, unlock)
     SaveManager.achievements[id] = { isAchieve = true }
     local ok = SaveManager.saveDatas()
 
     if ok then
-        ItemManager.unlockNItems(nbItemToUnlock)
+        if unlock.items > 0 then
+            ItemManager.unlockNItems(unlock.items)
+        end
+        if #unlock.sprites > 0 then
+            FakeAchievementPopup.ShowAll(unlock.sprites)
+        end
     end
 end
 
