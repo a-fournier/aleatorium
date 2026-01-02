@@ -7,23 +7,44 @@ KillAchievement = Achievement:extend()
 function KillAchievement:check(entity)
     Logger.debug("Entity killed:", entity.Type)
     local game = Game()
+    local player = game:GetPlayer(0):GetPlayerType()
+
     if not self:isAchieve()
-        and self.properties.entities[entity.Type] ~= nil
-        and self.properties.character == game:GetPlayer(0):GetPlayerType()
+        and self.properties[player] ~= nil
+        and self.properties[player].entities[entity.Type] ~= nil
         and self.properties.difficulty == game.Difficulty
     then
-        Logger.debug("Current state", self.properties.entities[entity.Type])
-        self.properties.entities[entity.Type] = math.max(0, self.properties.entities[entity.Type] - 1)
+        Logger.debug("Current state", self.properties[player])
+        local entityProperty = self.properties[player]
+        local entities = entityProperty.entities
+        entities[entity.Type] = math.max(0, entities[entity.Type] - 1)
         self:save()
-        Logger.debug("Updated state", SaveManager.achievements)
 
-        if self.properties.entities.operator == 'OR' then
-            if self.properties.entities[entity.Type] > 0 then
+        Logger.debug("Updated state", SaveManager.achievements[self.id], self.id)
+        if entityProperty.operator == 'OR' then
+            if entities[entity.Type] > 0 then
                 return
             end
         else
-            for _, k in pairs(self.properties.entities) do
+            for _, k in pairs(entities) do
                 if type(k) == "number" and k > 0 then return end
+            end
+        end
+
+        entityProperty.times = math.max(0, entityProperty.times - 1)
+        self:save()
+        Logger.debug("Updated times", SaveManager.achievements[self.id], self.id)
+
+        if self.properties.operator == 'OR' then
+            if entityProperty.times > 0 then
+                return
+            end
+        else
+            for _, k in pairs(self.properties) do
+                if type(k) == "table" and k.times ~= nil and k.times > 0
+                then
+                    return
+                end
             end
         end
 

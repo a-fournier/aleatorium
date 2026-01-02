@@ -38,11 +38,22 @@ function registerAchievements()
     local KillAchievement = require("src/achievements/kill_achievement")
 
     KillAchievement:new(MOD_REF, 21, {
-        character = PlayerType.PLAYER_CAIN,
-        entities = {
+        operator = 'AND',
+        [PlayerType.PLAYER_ISAAC] = {
+            times = 1,
             operator = 'AND',
-            [EntityType.ENTITY_FLY] = 2,
-            [EntityType.ENTITY_POOTER] = 1
+            entities = {
+                [EntityType.ENTITY_FLY] = 2,
+                [EntityType.ENTITY_POOTER] = 1
+            }
+        },
+        [PlayerType.PLAYER_CAIN] = {
+            times = 1,
+            operator = 'AND',
+            entities = {
+                [EntityType.ENTITY_FLY] = 2,
+                [EntityType.ENTITY_POOTER] = 1
+            }
         },
         difficulty = Difficulty.DIFFICULTY_HARD
     }):register()
