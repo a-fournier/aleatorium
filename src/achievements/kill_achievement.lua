@@ -6,14 +6,25 @@ KillAchievement = Achievement:extend()
 
 function KillAchievement:check(entity)
     Logger.debug("Entity killed:", entity.Type)
-    if not self:isAchieve() and self.properties.entities[entity.Type] ~= nil then
+    local game = Game()
+    if not self:isAchieve()
+        and self.properties.entities[entity.Type] ~= nil
+        and self.properties.character == game:GetPlayer(0):GetPlayerType()
+        and self.properties.difficulty == game.Difficulty
+    then
         Logger.debug("Current state", self.properties.entities[entity.Type])
         self.properties.entities[entity.Type] = math.max(0, self.properties.entities[entity.Type] - 1)
         self:save()
         Logger.debug("Updated state", SaveManager.achievements)
 
-        for _, remaining in pairs(self.properties.entities) do
-            if remaining > 0 then return end
+        if self.properties.entities.operator == 'OR' then
+            if self.properties.entities[entity.Type] > 0 then
+                return
+            end
+        else
+            for _, k in pairs(self.properties.entities) do
+                if type(k) == "number" and k > 0 then return end
+            end
         end
 
         self:onAchieve()
