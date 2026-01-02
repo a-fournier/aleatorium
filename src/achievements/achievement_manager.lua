@@ -36,20 +36,7 @@ function AchievementManager.unlockAchievement(id, nbItemToUnlock)
 end
 
 function registerAchievements()
-    local KillAchievement = require("src/achievements/kill_achievement")
-
-    KillAchievement:new(MOD_REF, 21, 3, {
-        operator = 'OR',
-        [PlayerType.PLAYER_ISAAC] = {
-            times = 1,
-            operator = 'OR',
-            entities = {
-                [EntityType.ENTITY_FLY] = 2,
-                [EntityType.ENTITY_POOTER] = 1
-            }
-        },
-        difficulty = Difficulty.DIFFICULTY_HARD
-    }):register()
+    require("src/achievements/achievements")
 end
 
 function AchievementManager.register(mod)

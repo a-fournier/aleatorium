@@ -1,26 +1,27 @@
 local AchievementManager = require("src/achievements/achievement_manager")
+local ModManager = require("src/mod_manager")
 local Logger = require("src/utils/logger")
 
 local Achievement = {}
 Achievement.__index = Achievement
 Achievement.__is_abstract = true
 
-function Achievement:new(mod, id, nbItemToUnlock, properties)
+function Achievement:new(id, nbItemToUnlock, properties)
     if self.__is_abstract then
         error("You can't create an instance of an abstract class, extend it instead", 2)
     end
 
     -- Initialize properties
     local o = setmetatable({}, self)
-    o.mod = mod
+    o.mod = ModManager.getModRef()
     o.id = id
-    o.nbItemToUnlock =nbItemToUnlock
+    o.nbItemToUnlock = nbItemToUnlock
     o.properties = AchievementManager.getProperties(id, properties)
     o.didShowThisRun = false
 
     -- TODO : check on continue
     -- Reset didShowThisRun on new game start
-    mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() o.didShowThisRun = false end)
+    o.mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() o.didShowThisRun = false end)
 
     return o
 end

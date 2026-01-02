@@ -15,6 +15,10 @@ function loadModules(isContinued)
     FakeAchievementPopup.register(MOD_REF)
 end
 
+ModManager.getModRef = function()
+    return MOD_REF
+end
+
 function ModManager.register(mod)
     MOD_REF = mod
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, loadModules)
