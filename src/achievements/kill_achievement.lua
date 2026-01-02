@@ -5,7 +5,6 @@ local SaveManager = require("src/save/save_manager")
 KillAchievement = Achievement:extend()
 
 function KillAchievement:check(entity)
-    Logger.debug("Entity killed:", entity.Type)
     local game = Game()
     local player = game:GetPlayer(0):GetPlayerType()
 
@@ -14,13 +13,11 @@ function KillAchievement:check(entity)
         and self.properties[player].entities[entity.Type] ~= nil
         and self.properties.difficulty == game.Difficulty
     then
-        Logger.debug("Current state", self.properties[player])
         local entityProperty = self.properties[player]
         local entities = entityProperty.entities
         entities[entity.Type] = math.max(0, entities[entity.Type] - 1)
         self:save()
 
-        Logger.debug("Updated state", SaveManager.achievements[self.id], self.id)
         if entityProperty.operator == 'OR' then
             if entities[entity.Type] > 0 then
                 return
@@ -33,7 +30,6 @@ function KillAchievement:check(entity)
 
         entityProperty.times = math.max(0, entityProperty.times - 1)
         self:save()
-        Logger.debug("Updated times", SaveManager.achievements[self.id], self.id)
 
         if self.properties.operator == 'OR' then
             if entityProperty.times > 0 then
@@ -53,10 +49,7 @@ function KillAchievement:check(entity)
 end
 
 function KillAchievement:register()
-    Logger.debug("SaveManager Achievements", SaveManager.achievements, self.id)
-    Logger.debug("Is achieve", self:isAchieve())
     if not self:isAchieve() then
-        Logger.debug("Registering KillAchievement callback for ID", self.id)
         self.mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, function(_, entity) self:check(entity) end)
     end
 end

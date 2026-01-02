@@ -57,7 +57,6 @@ function FakeAchievementPopup.Show(params, callback)
     state.sfxPlayed = false
     state.active    = true
     state.callback  = callback
-    Logger.debug(callback, state)
 
     gotoPhase("Appear")
 end
@@ -91,7 +90,6 @@ function FakeAchievementPopup.OnPostRender(_mod)
         if popup:IsFinished("Dissapear") then
             state.active = false
             state.phase  = "none"
-            Logger.debug("[FakeAchievementPopup] Popup closed", state)
             state.callback()
         end
     end

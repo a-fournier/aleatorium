@@ -27,7 +27,6 @@ function AchievementManager.saveAchievement(achievement)
 end
 
 function AchievementManager.unlockAchievement(id, nbItemToUnlock)
-    Logger.debug("Unlocking achievement: " .. tostring(id), nbItemToUnlock)
     SaveManager.achievements[id] = { isAchieve = true }
     local ok = SaveManager.saveDatas()
 

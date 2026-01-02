@@ -15,10 +15,7 @@ function Achievement:new(mod, id, nbItemToUnlock, properties)
     o.mod = mod
     o.id = id
     o.nbItemToUnlock =nbItemToUnlock
-
-    Logger.debug("Before Load", o.properties)
     o.properties = AchievementManager.getProperties(id, properties)
-    Logger.debug("After Load", o.properties)
     o.didShowThisRun = false
 
     -- TODO : check on continue
