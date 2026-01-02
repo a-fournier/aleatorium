@@ -8,7 +8,7 @@ Achievement.__is_abstract = true
 -- @param mod ModRef
 -- @param id number
 -- @param sprite string
-function Achievement:new(mod, id)
+function Achievement:new(mod, id, properties)
     if self.__is_abstract then
         error("You can't create an instance of an abstract class, extend it instead", 2)
     end
@@ -17,6 +17,10 @@ function Achievement:new(mod, id)
     local o = setmetatable({}, self)
     o.mod = mod
     o.id = id
+
+    Logger.debug("Before Load", o.properties)
+    o.properties = AchievementManager.getProperties(id, properties)
+    Logger.debug("After Load", o.properties)
     o.didShowThisRun = false
 
     -- TODO : check on continue
@@ -49,6 +53,15 @@ function Achievement:onAchieve()
         self.didShowThisRun = true
         AchievementManager.unlockAchievement(self.id)
     end
+end
+
+function Achievement:getSavedProperties()
+    local saved = AchievementManager.getAchievementProperties(self.id)
+    return saved or {}
+end
+
+function Achievement:save()
+    AchievementManager.saveAchievement(self)
 end
 
 function Achievement:check()

@@ -16,11 +16,11 @@ function getRNG(stream)
 end
 
 function RNGController:RandomFloat(pool, max)
-    local currentStream = SaveManager.current_game.rng.streams[tostring(pool)] or 0
+    local currentStream = SaveManager.current_game.rng.streams[pool] or 0
     Logger.debug("pool", pool, "n", currentStream, "n+1=", currentStream + 1)
     local rng = getRNG(currentStream)
 
-    SaveManager.current_game.rng.streams[tostring(pool)] = currentStream + 1
+    SaveManager.current_game.rng.streams[pool] = currentStream + 1
     return rng:RandomFloat() * (max or 1)
 end
 

@@ -9,7 +9,7 @@ local SerializedItems = {}
 
 function ItemManager.isItemUnlocked(id)
     local items = SaveManager.items
-    return items and items[tostring(id)] and items[tostring(id)].isUnlocked == true
+    return items[id] and items[id].isUnlocked == true
 end
 
 function ItemManager.pickRandomLockedItem()
@@ -31,7 +31,7 @@ function ItemManager.unlockItem(item)
         return
     end
     item.isUnlocked = true
-    SaveManager.items[tostring(item.id)] = { isUnlocked = item.isUnlocked }
+    SaveManager.items[item.id] = { isUnlocked = item.isUnlocked }
 
     local ok = SaveManager.saveDatas()
     if ok then

@@ -17,8 +17,9 @@ function Item:new(id, pools, isDefaultUnlock, unlockSprite)
         o.isUnlocked = ItemManager.isItemUnlocked(o.id)
     end
 
-    if SaveManager.current_game.items[tostring(id)] then
-        o.pools = SaveManager.current_game.items[tostring(id)].pools
+    -- TODO: not working while game has not been shut downs
+    if SaveManager.current_game.items[id] then
+        o.pools = SaveManager.current_game.items[id].pools
         Logger.debug("Loading saved pools for item ID " .. tostring(id), o.pools)
     end
     return o
@@ -26,11 +27,11 @@ end
 
 function Item:decrementWeight(pool)
     local decrementRatio = Pools[pool] and Pools[pool].decrementRatio or 1
-    SaveManager.current_game.items[tostring(self.id)] = { pools = {} }
+    SaveManager.current_game.items[self.id] = { pools = {} }
 
     for p, value in pairs(self.pools) do
         self.pools[p] = math.max(0, value - decrementRatio)
-        SaveManager.current_game.items[tostring(self.id)].pools[tostring(p)] = self.pools[p]
+        SaveManager.current_game.items[self.id].pools[p] = self.pools[p]
     end
 end
 

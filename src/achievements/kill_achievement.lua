@@ -5,14 +5,11 @@ local SaveManager = require("src/save/save_manager")
 KillAchievement = Achievement:extend()
 
 function KillAchievement:check(entity)
-    local entityType = tostring(entity.Type)
-    Logger.debug("Entity killed:", entityType)
-    if not self:isAchieve() and self.properties.entities[entityType] ~= nil then
-        Logger.debug("Current state", self.properties.entities[entityType])
-        self.properties.entities[entityType] = math.max(0, self.properties.entities[entityType] - 1)
-        SaveManager.achievements[tostring(self.id)] = SaveManager.achievements[tostring(self.id)] or {}
-        SaveManager.achievements[tostring(self.id)].properties = self.properties
-        SaveManager.saveDatas()
+    Logger.debug("Entity killed:", entity.Type)
+    if not self:isAchieve() and self.properties.entities[entity.Type] ~= nil then
+        Logger.debug("Current state", self.properties.entities[entity.Type])
+        self.properties.entities[entity.Type] = math.max(0, self.properties.entities[entity.Type] - 1)
+        self:save()
         Logger.debug("Updated state", SaveManager.achievements)
 
         for _, remaining in pairs(self.properties.entities) do
@@ -23,15 +20,8 @@ function KillAchievement:check(entity)
     end
 end
 
----@param properties { character: number, entities: {[key: number]: number} }
-function KillAchievement:register(properties)
-    self.properties = properties
+function KillAchievement:register()
     Logger.debug("SaveManager Achievements", SaveManager.achievements, self.id)
-    Logger.debug("Before Load", self.properties)
-    if SaveManager.achievements[tostring(self.id)] ~= nil then
-        self.properties = SaveManager.achievements[tostring(self.id)].properties or properties
-    end
-    Logger.debug("After Load", self.properties)
     Logger.debug("Is achieve", self:isAchieve())
     if not self:isAchieve() then
         Logger.debug("Registering KillAchievement callback for ID", self.id)

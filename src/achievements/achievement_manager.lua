@@ -7,12 +7,27 @@ local AchievementManager = {}
 
 function AchievementManager.isAchievementUnlocked(id)
     return SaveManager.achievements
-        and SaveManager.achievements[tostring(id)]
-        and SaveManager.achievements[tostring(id)].isAchieve == true
+        and SaveManager.achievements[id]
+        and SaveManager.achievements[id].isAchieve == true
+end
+
+function AchievementManager.getProperties(id, default)
+    if SaveManager.achievements[id]
+    then
+        return SaveManager.achievements[id].properties or default
+    end
+    return default
+end
+
+function AchievementManager.saveAchievement(achievement)
+    local id = achievement.id
+    SaveManager.achievements[id] = SaveManager.achievements[id] or {}
+    SaveManager.achievements[id].properties = achievement.properties
+    SaveManager.saveDatas()
 end
 
 function AchievementManager.unlockAchievement(id)
-    SaveManager.achievements[tostring(id)] = { isAchieve = true }
+    SaveManager.achievements[id] = { isAchieve = true }
     local ok = SaveManager.saveDatas()
     if ok then
         ItemManager.unlockItem(ItemManager.pickRandomLockedItem())
@@ -22,7 +37,7 @@ end
 function registerAchievements()
     local KillAchievement = require("src/achievements/kill_achievement")
 
-    KillAchievement:new(MOD_REF, 21):register({ character = PlayerType.PLAYER_CAIN, entities = {[tostring(EntityType.ENTITY_FLY)] = 2, [tostring(EntityType.ENTITY_POOTER)] = 1} })
+    KillAchievement:new(MOD_REF, 21, { character = PlayerType.PLAYER_CAIN, entities = {[EntityType.ENTITY_FLY] = 2, [EntityType.ENTITY_POOTER] = 1}}):register()
 end
 
 function AchievementManager.register(mod)

@@ -1,4 +1,5 @@
 local json = require("json")
+local Converter = require("src/utils/converter")
 local Logger = require("src/utils/logger")
 
 local MOD_REF
@@ -14,11 +15,12 @@ local SaveManager = {
 function loadDatas(isContinued)
     if MOD_REF:HasData() then
         local ok, decoded = pcall(json.decode, MOD_REF:LoadData())
-        SaveManager.achievements = decoded.achievements or {}
-        SaveManager.items = decoded.items or {}
+        local parsed = Converter:parseIntKeysDeep(decoded)
+        SaveManager.achievements = parsed.achievements or SaveManager.achievements
+        SaveManager.items = parsed.items or SaveManager.items
 
         if isContinued then
-            SaveManager.current_game = decoded.current_game or SaveManager.current_game
+            SaveManager.current_game = parsed.current_game or SaveManager.current_game
         end
     end
 end
@@ -32,7 +34,8 @@ function getNonSerializedDatas()
 end
 
 function SaveManager.saveDatas()
-    local ok, encoded = pcall(json.encode, getNonSerializedDatas())
+    local parsed = Converter:stringifyKeysDeep(getNonSerializedDatas())
+    local ok, encoded = pcall(json.encode, parsed)
     if ok then
         MOD_REF:SaveData(encoded)
     end
