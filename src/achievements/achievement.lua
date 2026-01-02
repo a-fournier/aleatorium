@@ -8,7 +8,7 @@ Achievement.__is_abstract = true
 -- @param mod ModRef
 -- @param id number
 -- @param sprite string
-function Achievement:new(mod, id, name, sprite)
+function Achievement:new(mod, id)
     if self.__is_abstract then
         error("You can't create an instance of an abstract class, extend it instead", 2)
     end
@@ -17,8 +17,6 @@ function Achievement:new(mod, id, name, sprite)
     local o = setmetatable({}, self)
     o.mod = mod
     o.id = id
-    o.name = name
-    o.sprite = sprite
     o.didShowThisRun = false
 
     -- TODO : check on continue
@@ -43,13 +41,13 @@ function Achievement:extend()
 end
 
 function Achievement:isAchieve()
-    return AchievementManager.isAchievementUnlocked(self.id)
+    return AchievementManager.isAchievementUnlocked(self.id) or self.didShowThisRun
 end
 
 function Achievement:onAchieve()
-    if not AchievementManager.isAchievementUnlocked(self.id) and not self.didShowThisRun then
+    if not self:isAchieve() then
         self.didShowThisRun = true
-        AchievementManager.unlockAchievement(self.id, self.name)
+        AchievementManager.unlockAchievement(self.id)
     end
 end
 

@@ -7,12 +7,12 @@ local AchievementManager = {}
 
 function AchievementManager.isAchievementUnlocked(id)
     return SaveManager.achievements
-        and SaveManager.achievements[id]
-        and SaveManager.achievements[id].isAchieve == true
+        and SaveManager.achievements[tostring(id)]
+        and SaveManager.achievements[tostring(id)].isAchieve == true
 end
 
-function AchievementManager.unlockAchievement(id, name)
-    SaveManager.achievements[id] = { name = name, isAchieve = true }
+function AchievementManager.unlockAchievement(id)
+    SaveManager.achievements[tostring(id)] = { isAchieve = true }
     local ok = SaveManager.saveDatas()
     if ok then
         ItemManager.unlockItem(ItemManager.pickRandomLockedItem())
@@ -20,9 +20,9 @@ function AchievementManager.unlockAchievement(id, name)
 end
 
 function registerAchievements()
-    require("src/achievements/list/on_kill_achievement")
-            :new(MOD_REF, "1", "on_kill", "achievement_planetarium")
-            :register()
+    local KillAchievement = require("src/achievements/kill_achievement")
+
+    KillAchievement:new(MOD_REF, 21):register({ character = PlayerType.PLAYER_CAIN, entities = {[tostring(EntityType.ENTITY_FLY)] = 2, [tostring(EntityType.ENTITY_POOTER)] = 1} })
 end
 
 function AchievementManager.register(mod)
