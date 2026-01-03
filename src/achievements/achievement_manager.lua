@@ -32,13 +32,26 @@ function AchievementManager.unlockAchievement(id, unlock)
     local ok = SaveManager.saveDatas()
 
     if ok then
-        if unlock.items > 0 then
-            ItemManager.unlockNItems(unlock.items)
-        end
-        if #unlock.sprites > 0 then
-            FakeAchievementPopup.ShowAll(unlock.sprites)
-        end
+        AchievementManager.showPopups(unlock.sprites, unlock.items)
     end
+end
+
+function AchievementManager.showPopups(sprites, items)
+    if #sprites >= 1
+    then
+        FakeAchievementPopup.Show({ sprite = sprites[1] }, function()
+            table.remove(sprites, 1)
+            AchievementManager.showPopups(sprites, items)
+        end)
+    else if items > 0
+    then
+        ItemManager.unlockItem(
+            ItemManager.pickRandomLockedItem(), function()
+            AchievementManager.showPopups(sprites, items - 1)
+        end)
+    else
+        FakeAchievementPopup.Close()
+    end end
 end
 
 function registerAchievements()

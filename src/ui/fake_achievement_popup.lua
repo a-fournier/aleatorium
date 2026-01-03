@@ -45,13 +45,6 @@ local function gotoPhase(phase)
     end
 end
 
-function FakeAchievementPopup.ShowAll(sprites)
-    FakeAchievementPopup.Show({ sprite = sprites[1] }, function()
-        table.remove(sprites, 1)
-        if #sprites > 0 then FakeAchievementPopup.ShowAll(sprites) end
-    end)
-end
-
 function FakeAchievementPopup.Show(params, callback)
     if state.active then return end
 

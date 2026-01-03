@@ -26,14 +26,6 @@ function ItemManager.pickRandomLockedItem()
     return lockedItems[randomIndex]
 end
 
-function ItemManager.unlockNItems(n)
-    if n > 0 then
-        ItemManager.unlockItem(ItemManager.pickRandomLockedItem(), function() ItemManager.unlockNItems(n - 1) end)
-    else
-        FakeAchievementPopup.Close()
-    end
-end
-
 function ItemManager.unlockItem(item, callback)
     if item == nil then
         return
