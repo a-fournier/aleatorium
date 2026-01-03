@@ -1,6 +1,5 @@
 local Achievement = require("src/achievements/achievement")
 local Logger = require("src/utils/logger")
-local SaveManager = require("src/save/save_manager")
 
 KillAchievement = Achievement:extend()
 
@@ -9,11 +8,16 @@ function KillAchievement:check(entity)
     local player = game:GetPlayer(0):GetPlayerType()
 
     if not self:isAchieve()
-        and self.properties[player] ~= nil
-        and self.properties[player].entities[entity.Type] ~= nil
-        and self.properties.difficulty == game.Difficulty
+        and (
+            self.properties[-1] ~= nil
+            or (
+                self.properties[player] ~= nil
+                and self.properties[player].entities[entity.Type] ~= nil
+            )
+        )
+        and (self.properties.difficulty == game.Difficulty or self.properties.difficulty == -1)
     then
-        local entityProperty = self.properties[player]
+        local entityProperty = self.properties[player] or self.properties[-1]
         local entities = entityProperty.entities
         entities[entity.Type] = math.max(0, entities[entity.Type] - 1)
         self:save()
