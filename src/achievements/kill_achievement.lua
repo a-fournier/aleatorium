@@ -9,8 +9,8 @@ function indexOfEntityMatching(entity, player, properties)
 
     for i, v in pairs(playerProperties.entities) do
         if v.type == entity.Type
-        and ( v.variant == -1 or v.variant == entity.Variant )
-    then
+            and ( v.variant == -1 or v.variant == entity.Variant )
+        then
             return i
         end
     end
@@ -26,7 +26,6 @@ function KillAchievement:check(entity)
     local game = Game()
     local player = game:GetPlayer(0):GetPlayerType()
     local entityIndex = indexOfEntityMatching(entity, player, self.properties)
-    Logger.debug(entityIndex)
     Logger.debug("You killed entity type",entity.Type, "variant", entity.Variant, "subType", entity.SubType)
     if not self:isAchieve() and entityIndex ~= -1 and isDifficultyMatching(game.Difficulty, self.properties)
     then
