@@ -117,7 +117,6 @@ achievement_bloodpuppy
 achievement_bloodycrown
 achievement_bloodygust
 achievement_bloodypenny
-achievement_bluebaby
 achievement_bluebabyb
 achievement_bluebabyssoul
 achievement_bluekey

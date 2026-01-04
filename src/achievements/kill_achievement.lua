@@ -3,36 +3,49 @@ local Logger = require("src/utils/logger")
 
 KillAchievement = Achievement:extend()
 
+function indexOfEntityMatching(entity, player, properties)
+    local playerProperties = properties[player] or properties[-1]
+    if playerProperties == nil then return -1 end
+
+    for i, v in pairs(playerProperties.entities) do
+        if v.type == entity.Type
+        and ( v.variant == -1 or v.variant == entity.Variant )
+    then
+            return i
+        end
+    end
+
+    return -1
+end
+
+function isDifficultyMatching(difficulty, properties)
+    return properties.difficulty == difficulty or properties.difficulty == -1
+end
+
 function KillAchievement:check(entity)
     local game = Game()
     local player = game:GetPlayer(0):GetPlayerType()
-
-    if not self:isAchieve()
-        and (
-            (
-                self.properties[-1] ~= nil
-                and self.properties[-1].entities[entity.Type] ~= nil
-            )
-            or (
-                self.properties[player] ~= nil
-                and self.properties[player].entities[entity.Type] ~= nil
-            )
-        )
-        and (self.properties.difficulty == game.Difficulty or self.properties.difficulty == -1)
+    local entityIndex = indexOfEntityMatching(entity, player, self.properties)
+    Logger.debug(entityIndex)
+    Logger.debug("You killed entity type",entity.Type, "variant", entity.Variant, "subType", entity.SubType)
+    if not self:isAchieve() and entityIndex ~= -1 and isDifficultyMatching(game.Difficulty, self.properties)
     then
+        Logger.debug("KillAchievement matched for player", player, "entity type", entity.Type)
         local entityProperty = self.properties[player] or self.properties[-1]
         local entities = entityProperty.entities
 
-        entities[entity.Type] = math.max(0, entities[entity.Type] - 1)
+        entities[entityIndex].times = math.max(0, entities[entityIndex].times - 1)
         self:save()
 
         if entityProperty.operator == 'OR' then
-            if entities[entity.Type] > 0 then
+            if entities[entityIndex].times > 0 then
                 return
             end
         else
             for _, k in pairs(entities) do
-                if type(k) == "number" and k > 0 then return end
+                if type(k) == "table" and k.times ~= nil and k.times > 0 then
+                    return
+                end
             end
         end
 
