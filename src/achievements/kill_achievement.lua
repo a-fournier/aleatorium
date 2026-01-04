@@ -9,7 +9,10 @@ function KillAchievement:check(entity)
 
     if not self:isAchieve()
         and (
-            self.properties[-1] ~= nil
+            (
+                self.properties[-1] ~= nil
+                and self.properties[-1].entities[entity.Type] ~= nil
+            )
             or (
                 self.properties[player] ~= nil
                 and self.properties[player].entities[entity.Type] ~= nil
@@ -19,6 +22,7 @@ function KillAchievement:check(entity)
     then
         local entityProperty = self.properties[player] or self.properties[-1]
         local entities = entityProperty.entities
+
         entities[entity.Type] = math.max(0, entities[entity.Type] - 1)
         self:save()
 
