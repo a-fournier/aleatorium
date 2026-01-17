@@ -1,14 +1,15 @@
 local AchievementManager = require("src/achievements/achievement_manager")
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local ItemManager = require("src/items/item_manager")
+local OnDonationSlotDestroyed = require("src/callback/onDonationSlotDestroyed")
 local SaveManager = require("src/save/save_manager")
 
-local MOD_REF
 local ModManager = {}
 
 -- Load all sub-managers when the game starts
 -- order matters here
 function loadModules(isContinued)
+    OnDonationSlotDestroyed.Init(MOD_REF)
     SaveManager.register(MOD_REF, isContinued)
     ItemManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)
