@@ -1,0 +1,7 @@
+274 variant 0 = Mega satan head
+274 variant 1 = Mega satan left hand
+274 variant 2 = Mega satan right hand
+275 variant 0 = Mega satan skeleton head
+
+271 variant 1 = Blue / Black angel
+272 variant 2 = Red / Black angel

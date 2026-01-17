@@ -464,7 +464,6 @@ achievement_tmtrainer
 achievement_torncard
 achievement_tornpocket
 achievement_transcendence
-achievement_triachnid
 achievement_trisagion
 achievement_twistedpair
 achievement_urnofsouls

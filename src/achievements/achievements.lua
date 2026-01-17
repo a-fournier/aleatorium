@@ -1,3 +1,4 @@
+local DonationAchievement = require("src/achievements/donation_achievement")
 local KillAchievement = require("src/achievements/kill_achievement")
 
 return {
@@ -69,7 +70,7 @@ return {
     -- [65] = Become Guppy
     -- [66] = Take 10 Angel Room items
     -- [67] = Complete 2 floors in a row without taking damage
-    [68] = KillAchievement:new(68, { items = 0, sprites = {"TODO"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 10, variant = 0 }}}, difficulty = -1 }):register(),
+    [68] = KillAchievement:new(68, { items = 0, sprites = {"achievement_triachnid"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 10, variant = 0 }}}, difficulty = -1 }):register(),
     -- [69] = Collect all non-DLC items in the game, and unlock all of the secrets and endings (minus The Lost and his 6 unlockable items)
     -- [70] = Complete the Boss Rush as Isaac
     [71] = KillAchievement:new(71, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
@@ -136,6 +137,7 @@ return {
     [132] = KillAchievement:new(132, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     --[133] = Complete the Boss Rush as The Lost
     --[134] = Donate 10 Coins to the Donation Machine
+    [134] = DonationAchievement:new(134, { items = 1, sprites = {} }, { type = "NORMAL", times = 10 }):register(),
     --[135] = Donate 50 Coins to the Donation Machine
     --[136] = Donate 150 Coins to the Donation Machine
     --[137] = Donate 400 Coins to the Donation Machine
@@ -180,7 +182,6 @@ return {
     [176] = KillAchievement:new(176, { items = 0, sprites = {"achievement_glitchbaby"} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 1, variant = 0 }}}, difficulty = Difficulty.DIFFICULTY_HARD }):register(),
     [177] = KillAchievement:new(177, { items = 0, sprites = {"achievement_fightingbaby"} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 1, variant = 0 }}}, difficulty = Difficulty.DIFFICULTY_HARD }):register(),
     --[178] = Become Beelzebub
-    -- TODO : Hush or HushSkinLess ???
     [179] = KillAchievement:new(179, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [180] = KillAchievement:new(180, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [181] = KillAchievement:new(181, { items = 1, sprites = {} }, { [PlayerType.PLAYER_CAIN] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
@@ -194,20 +195,19 @@ return {
     [189] = KillAchievement:new(189, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [190] = KillAchievement:new(190, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LILITH] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [191] = KillAchievement:new(191, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [192] = KillAchievement:new(192, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [193] = KillAchievement:new(193, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [194] = KillAchievement:new(194, { items = 1, sprites = {} }, { [PlayerType.PLAYER_CAIN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [195] = KillAchievement:new(195, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JUDAS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [196] = KillAchievement:new(196, { items = 1, sprites = {} }, { [PlayerType.PLAYER_BLUEBABY] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [197] = KillAchievement:new(197, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EVE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [198] = KillAchievement:new(198, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [199] = KillAchievement:new(199, { items = 1, sprites = {} }, { [PlayerType.PLAYER_AZAZEL] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [200] = KillAchievement:new(200, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LAZARUS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [201] = KillAchievement:new(201, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [202] = KillAchievement:new(202, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [203] = KillAchievement:new(203, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LILITH] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [204] = KillAchievement:new(204, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    -- TODO: EntityType.ENTITY_MEGA_SATAN_2 or EntityType.ENTITY_MEGA_SATAN
+    [192] = KillAchievement:new(192, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [193] = KillAchievement:new(193, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [194] = KillAchievement:new(194, { items = 1, sprites = {} }, { [PlayerType.PLAYER_CAIN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [195] = KillAchievement:new(195, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JUDAS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [196] = KillAchievement:new(196, { items = 1, sprites = {} }, { [PlayerType.PLAYER_BLUEBABY] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [197] = KillAchievement:new(197, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EVE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [198] = KillAchievement:new(198, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [199] = KillAchievement:new(199, { items = 1, sprites = {} }, { [PlayerType.PLAYER_AZAZEL] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [200] = KillAchievement:new(200, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LAZARUS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [201] = KillAchievement:new(201, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [202] = KillAchievement:new(202, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [203] = KillAchievement:new(203, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LILITH] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
+    [204] = KillAchievement:new(204, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
     [205] = KillAchievement:new(205, { items = 0, sprites = {"achievement_205_crybaby"} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_MEGA_SATAN_2, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [206] = KillAchievement:new(206, { items = 0, sprites = {"achievement_206_redbaby"} }, { [PlayerType.PLAYER_MAGDALENE] = { times = 1, entities = {{type = EntityType.ENTITY_MEGA_SATAN_2, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [207] = KillAchievement:new(207, { items = 0, sprites = {"achievement_207_greenbaby"} }, { [PlayerType.PLAYER_CAIN] = { times = 1, entities = {{type = EntityType.ENTITY_MEGA_SATAN_2, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
@@ -299,30 +299,28 @@ return {
     [293] = KillAchievement:new(293, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_DELIRIUM, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [294] = KillAchievement:new(294, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_DELIRIUM, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [295] = KillAchievement:new(295, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_DELIRIUM, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    -- TODO: GREEDIER ???
-    [296] = KillAchievement:new(296, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [297] = KillAchievement:new(297, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [298] = KillAchievement:new(298, { items = 1, sprites = {} }, { [PlayerType.PLAYER_CAIN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [299] = KillAchievement:new(299, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JUDAS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [300] = KillAchievement:new(300, { items = 1, sprites = {} }, { [PlayerType.PLAYER_BLUEBABY] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [301] = KillAchievement:new(301, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EVE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [302] = KillAchievement:new(302, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [303] = KillAchievement:new(303, { items = 1, sprites = {} }, { [PlayerType.PLAYER_AZAZEL] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [304] = KillAchievement:new(304, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LAZARUS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [305] = KillAchievement:new(305, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [306] = KillAchievement:new(306, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [307] = KillAchievement:new(307, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LILITH] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [308] = KillAchievement:new(308, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [309] = KillAchievement:new(309, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
+    [296] = KillAchievement:new(296, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [297] = KillAchievement:new(297, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [298] = KillAchievement:new(298, { items = 1, sprites = {} }, { [PlayerType.PLAYER_CAIN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [299] = KillAchievement:new(299, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JUDAS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [300] = KillAchievement:new(300, { items = 1, sprites = {} }, { [PlayerType.PLAYER_BLUEBABY] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [301] = KillAchievement:new(301, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EVE] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [302] = KillAchievement:new(302, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [303] = KillAchievement:new(303, { items = 1, sprites = {} }, { [PlayerType.PLAYER_AZAZEL] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [304] = KillAchievement:new(304, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LAZARUS] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [305] = KillAchievement:new(305, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [306] = KillAchievement:new(306, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [307] = KillAchievement:new(307, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LILITH] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [308] = KillAchievement:new(308, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
+    [309] = KillAchievement:new(309, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
     [310] = KillAchievement:new(310, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
     [311] = KillAchievement:new(311, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_SATAN, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
     [312] = KillAchievement:new(312, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
     [313] = KillAchievement:new(313, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     --[314] = Complete the Boss Rush as Apollyon
     [315] = KillAchievement:new(315, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [316] = KillAchievement:new(316, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
+    [316] = KillAchievement:new(316, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
     [317] = KillAchievement:new(317, { items = 0, sprites = {"achievement_mortbaby"} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, entities = {{type = EntityType.ENTITY_MEGA_SATAN_2, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    -- TODO: MOM'S HEART (variant 1) or IT LIVES ???
     [318] = KillAchievement:new(318, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON] = { times = 1, operator='OR', entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 1, variant = 0 }, {type = EntityType.ENTITY_MOMS_HEART, times = 1, variant = 1 }}}, difficulty = DIFFICULTY_HARD }):register(),
     --[319] = Earn all Hard mode Completion Marks as Apollyon
     [320] = KillAchievement:new(320, { items = 0, sprites = {"achievement_thevoid"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_HUSH, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
@@ -358,7 +356,6 @@ return {
     --[350] = Destroy 500 rocks
     --[351] = Done with 37
     --[352] = Become Beelzebub
-    -- TODO: ENTITY_POOP (variant ?) rainbow poop
     [353] = KillAchievement:new(353, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_POOP, times = 5, variant = -1 }}}, difficulty = -1 }):register(),
     --[354] = Complete 7 Daily Challenges (by touching the trophy at the end)
     --[355] = Pick up 5 familiars in a single run
