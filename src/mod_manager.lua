@@ -2,7 +2,7 @@ local AchievementManager = require("src/achievements/achievement_manager")
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local ItemManager = require("src/items/item_manager")
 local OnDonationSlotDestroyed = require("src/callback/onDonationSlotDestroyed")
---local OnDonationSlotFilled = require("src/callback/onDonationSlotFilled")
+local SlotManager = require("src/slots/slot_manager")
 local SaveManager = require("src/save/save_manager")
 
 local ModManager = {}
@@ -11,8 +11,8 @@ local ModManager = {}
 -- order matters here
 function loadModules(isContinued)
     OnDonationSlotDestroyed.register(MOD_REF)
-    --OnDonationSlotFilled.Init(MOD_REF)
     SaveManager.register(MOD_REF, isContinued)
+    SlotManager.register(MOD_REF)
     ItemManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)
     FakeAchievementPopup.register(MOD_REF)
@@ -20,6 +20,7 @@ end
 
 function unloadModules()
     OnDonationSlotDestroyed.unregister(MOD_REF)
+    SlotManager.unregister(MOD_REF)
 end
 
 ModManager.getModRef = function()

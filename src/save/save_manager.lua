@@ -9,7 +9,11 @@ local SaveManager = {
         items = { }
     },
     achievements = {},
-    items = {}
+    items = {},
+    slots = {
+        shop = 0,
+        greed = 0
+    }
 }
 
 function loadDatas(isContinued)
@@ -18,6 +22,7 @@ function loadDatas(isContinued)
         local parsed = Converter:parseIntKeysDeep(decoded)
         SaveManager.achievements = parsed.achievements or SaveManager.achievements
         SaveManager.items = parsed.items or SaveManager.items
+        SaveManager.slots = parsed.slots or SaveManager.slots
 
         if isContinued then
             SaveManager.current_game = parsed.current_game or SaveManager.current_game
@@ -29,7 +34,8 @@ function getNonSerializedDatas()
     return {
         achievements = SaveManager.achievements,
         items = SaveManager.items,
-        current_game = SaveManager.current_game
+        current_game = SaveManager.current_game,
+        slots = SaveManager.slots
     }
 end
 

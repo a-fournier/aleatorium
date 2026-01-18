@@ -1,13 +1,12 @@
 local Logger = require("src/utils/logger")
+local CallBackIds = require("src/callback/enums/callback_ids")
 local Table = require("src/utils/table")
 
 local onDonationSlotDestroyed = {
-    ID = "MC_POST_DONATION_SLOT_DESTROYED",
     _roomCoins = {},
     _known = {},
     _gone = {},
-    _sessions = {},
-    i = 0
+    _sessions = {}
 }
 
 function onDonationSlotDestroyed.register(mod)
@@ -36,27 +35,15 @@ local function openSession(seed)
     }
 end
 
-local function scanDonationMachines(donationMachines)
-    for _, e in ipairs(donationMachines) do
-        local spr = e:GetSprite()
-        local anim = spr:GetAnimation() or nil
-        local oanim  = spr:GetOverlayAnimation() or nil
-        local oframe = spr:GetOverlayFrame() or -1
-        local prevAnim = onDonationSlotDestroyed._known[e.InitSeed] and onDonationSlotDestroyed._known[e.InitSeed].anim or nil
+local function isCoinInserted(machine)
+    local spr = machine:GetSprite()
+    local oanim  = spr:GetOverlayAnimation() or nil
+    local oframe = spr:GetOverlayFrame() or -1
 
-        if (oanim == "CoinInsert" or  oanim == "CoinInsert2" or  oanim == "CoinInsert3") and oframe == 0 then
-            onDonationSlotDestroyed.i = onDonationSlotDestroyed.i + 1
-            Logger.debug("2")
-        end
+    return (oanim == "CoinInsert" or  oanim == "CoinInsert2" or  oanim == "CoinInsert3") and oframe == 0
+end
 
-        if anim ~= nil and (prevAnim ~= nil or anim ~= "Death") then
-            if prevAnim ~= anim then
-                onDonationSlotDestroyed._known[e.InitSeed] = { anim = anim, prevAnim = prevAnim }
-            end
-        end
-
-    end
-
+local function listenToDonationSlotDestroyed()
     local frame = Game():GetFrameCount()
     for seed, info in pairs(onDonationSlotDestroyed._known) do
         if info.anim == "Death" then
@@ -67,7 +54,32 @@ local function scanDonationMachines(donationMachines)
     end
 end
 
-local function aggregateCoins()
+local function scanSlots(slots, greedSlots)
+    for _, e in ipairs(slots) do
+        if isCoinInserted(e) then
+            Isaac.RunCallbackWithParam(CallBackIds.MC_PRE_DONATION_SLOT_COIN_INSERTED, nil, "shop")
+        end
+
+        local spr = e:GetSprite()
+        local anim = spr:GetAnimation() or nil
+        local prevAnim = onDonationSlotDestroyed._known[e.InitSeed] and onDonationSlotDestroyed._known[e.InitSeed].anim or nil
+        if anim ~= nil and (prevAnim ~= nil or anim ~= "Death") then
+            if prevAnim ~= anim then
+                onDonationSlotDestroyed._known[e.InitSeed] = { anim = anim, prevAnim = prevAnim }
+            end
+        end
+    end
+
+    for _, e in ipairs(greedSlots) do
+        if isCoinInserted(e) then
+            Isaac.RunCallbackWithParam(CallBackIds.MC_PRE_DONATION_SLOT_COIN_INSERTED, nil, "greed")
+        end
+    end
+
+    listenToDonationSlotDestroyed()
+end
+
+local function aggregateDroppedCoins()
     if next(onDonationSlotDestroyed._sessions) == nil then
         scanCoins()
         return
@@ -82,7 +94,7 @@ local function aggregateCoins()
             local nbCoinsAfter = Table.length(onDonationSlotDestroyed._roomCoins)
 
             local nbCoinsDropped = nbCoinsAfter - nbCoinsBefore
-            Isaac.RunCallbackWithParam(onDonationSlotDestroyed.ID, nil, nbCoinsDropped)
+            Isaac.RunCallbackWithParam(CallBackIds.MC_POST_DONATION_SLOT_DESTROYED, nil, nbCoinsDropped)
             onDonationSlotDestroyed._sessions[seed] = nil
         end
     end
@@ -98,9 +110,11 @@ end
 
 
 function onDonationSlotDestroyed._tick()
-    local donationMachines = Isaac.FindByType(EntityType.ENTITY_SLOT, 8, -1, false, false)
-    scanDonationMachines(donationMachines)
-    if donationMachines and #donationMachines > 0 then aggregateCoins() end
+    local slots = Isaac.FindByType(EntityType.ENTITY_SLOT, 8, -1, false, false)
+    local greedSlots = Isaac.FindByType(EntityType.ENTITY_SLOT, 11, -1, false, false)
+    scanSlots(slots, greedSlots)
+
+    if slots and #slots > 0 then aggregateDroppedCoins() end
 end
 
 return onDonationSlotDestroyed

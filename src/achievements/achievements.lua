@@ -1,4 +1,3 @@
-local DonationAchievement = require("src/achievements/donation_achievement")
 local KillAchievement = require("src/achievements/kill_achievement")
 
 return {
@@ -137,7 +136,6 @@ return {
     [132] = KillAchievement:new(132, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     --[133] = Complete the Boss Rush as The Lost
     --[134] = Donate 10 Coins to the Donation Machine
-    [134] = DonationAchievement:new(134, { items = 1, sprites = {} }, { type = "NORMAL", times = 10 }):register(),
     --[135] = Donate 50 Coins to the Donation Machine
     --[136] = Donate 150 Coins to the Donation Machine
     --[137] = Donate 400 Coins to the Donation Machine
