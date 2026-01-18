@@ -26,10 +26,9 @@ function KillAchievement:check(entity)
     local game = Game()
     local player = game:GetPlayer(0):GetPlayerType()
     local entityIndex = indexOfEntityMatching(entity, player, self.properties)
-    Logger.debug("You killed entity type",entity.Type, "variant", entity.Variant, "subType", entity.SubType)
+
     if not self:isAchieve() and entityIndex ~= -1 and isDifficultyMatching(game.Difficulty, self.properties)
     then
-        Logger.debug("KillAchievement matched for player", player, "entity type", entity.Type)
         local entityProperty = self.properties[player] or self.properties[-1]
         local entities = entityProperty.entities
 
