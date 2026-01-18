@@ -7,11 +7,17 @@ local onDonationSlotDestroyed = {
     _known = {},
     _gone = {},
     _sessions = {},
+    i = 0
 }
 
-function onDonationSlotDestroyed.Init(mod)
+function onDonationSlotDestroyed.register(mod)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, onDonationSlotDestroyed._resetRoomState)
     mod:AddCallback(ModCallbacks.MC_POST_UPDATE, onDonationSlotDestroyed._tick)
+end
+
+function onDonationSlotDestroyed.unregister(mod)
+    mod:RemoveCallback(ModCallbacks.MC_POST_NEW_ROOM, onDonationSlotDestroyed._resetRoomState)
+    mod:RemoveCallback(ModCallbacks.MC_POST_UPDATE, onDonationSlotDestroyed._tick)
 end
 
 local function scanCoins()
@@ -32,8 +38,16 @@ end
 
 local function scanDonationMachines(donationMachines)
     for _, e in ipairs(donationMachines) do
-        local anim = e:GetSprite():GetAnimation() or nil
+        local spr = e:GetSprite()
+        local anim = spr:GetAnimation() or nil
+        local oanim  = spr:GetOverlayAnimation() or nil
+        local oframe = spr:GetOverlayFrame() or -1
         local prevAnim = onDonationSlotDestroyed._known[e.InitSeed] and onDonationSlotDestroyed._known[e.InitSeed].anim or nil
+
+        if (oanim == "CoinInsert" or  oanim == "CoinInsert2" or  oanim == "CoinInsert3") and oframe == 0 then
+            onDonationSlotDestroyed.i = onDonationSlotDestroyed.i + 1
+            Logger.debug("2")
+        end
 
         if anim ~= nil and (prevAnim ~= nil or anim ~= "Death") then
             if prevAnim ~= anim then
@@ -79,6 +93,7 @@ function onDonationSlotDestroyed._resetRoomState()
     onDonationSlotDestroyed._known = {}
     onDonationSlotDestroyed._gone = {}
     onDonationSlotDestroyed._sessions= {}
+    onDonationSlotDestroyed.i = 0
 end
 
 

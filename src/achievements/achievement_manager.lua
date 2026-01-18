@@ -43,7 +43,7 @@ function AchievementManager.showPopups(sprites, items)
             table.remove(sprites, 1)
             AchievementManager.showPopups(sprites, items)
         end)
-    else if items > 0
+    elseif items > 0
     then
         ItemManager.unlockItem(
             ItemManager.pickRandomLockedItem(), function()
@@ -51,7 +51,7 @@ function AchievementManager.showPopups(sprites, items)
         end)
     else
         FakeAchievementPopup.Close()
-    end end
+    end
 end
 
 function registerAchievements()
