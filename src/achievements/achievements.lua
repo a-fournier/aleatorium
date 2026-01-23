@@ -1,5 +1,8 @@
 local KillAchievement = require("src/achievements/kill_achievement")
 
+local SlotAchievement = require("src/achievements/slot_achivement")
+local SlotType = require("src/slots/enums/slot_type")
+
 return {
     -- [0] = KillAchievement:new(0, { items = 0, sprites = {} }, { operator = 'OR', [PlayerType.PLAYER_ISAAC] = { times = 1, operator = 'OR', entities = { [EntityType.ENTITY_FLY] = 2, [EntityType.ENTITY_POOTER] = 1 } }, difficulty = Difficulty.DIFFICULTY_HARD }):register()
     -- [1] = Have 7 or more Red Heart Containers at one time
@@ -58,9 +61,9 @@ return {
     [54] = KillAchievement:new(54, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
     [55] = KillAchievement:new(55, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
     [56] = KillAchievement:new(56, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON] = { times = 1, entities = {{type = EntityType.ENTITY_SATAN, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    [57] = KillAchievement:new(54, { items = 0, sprites = {"achievement_thepolaroid"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 5, variant = 0 }}}, difficulty = -1 }):register(),
+    [57] = KillAchievement:new(57, { items = 0, sprites = {"achievement_thepolaroid"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 5, variant = 0 }}}, difficulty = -1 }):register(),
     -- [58] = Pick up both Key Pieces from the Angels in one run
-    -- [59] = Donate 900 coins to the Donation Machine
+    [59] = SlotAchievement:new(59, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 900 }):register(),
     -- [60] = Complete Beans! (challenge #13)
     [61] = KillAchievement:new(61, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_SHOPKEEPER, times = 20, variant = -1 }}}, difficulty = -1 }):register(),
     -- [62] = Complete The Family Man (challenge #19)
@@ -135,11 +138,11 @@ return {
     [131] = KillAchievement:new(131, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 1 }}}, difficulty = -1 }):register(),
     [132] = KillAchievement:new(132, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     --[133] = Complete the Boss Rush as The Lost
-    --[134] = Donate 10 Coins to the Donation Machine
-    --[135] = Donate 50 Coins to the Donation Machine
-    --[136] = Donate 150 Coins to the Donation Machine
-    --[137] = Donate 400 Coins to the Donation Machine
-    --[138] = Donate 999 Coins to the Donation Machine
+    [134] = SlotAchievement:new(134, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 10 }):register(),
+    [135] = SlotAchievement:new(135, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 50 }):register(),
+    [136] = SlotAchievement:new(136, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 150 }):register(),
+    [137] = SlotAchievement:new(137, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 400 }):register(),
+    [138] = SlotAchievement:new(138, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 999 }):register(),
     [139] = KillAchievement:new(139, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 4, variant = 0 }}}, difficulty = -1 }):register(),
     [140] = KillAchievement:new(140, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 6, variant = 0 }}}, difficulty = -1 }):register(),
     [141] = KillAchievement:new(141, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 7, variant = 0 }}}, difficulty = -1 }):register(),
@@ -152,10 +155,10 @@ return {
     --[148] = Blow up 30 Slot Machine
     [149] = KillAchievement:new(149, { items = 0, sprites = {"achievement_lostposter"} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     [150] = KillAchievement:new(150, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 2, variant = 0 }}}, difficulty = -1 }):register(),
-    --[151] = Donate 20 Coins to the Donation Machine
-    --[152] = Donate 100 Coins to the Donation Machine
-    --[153] = Donate 200 Coins to the Donation Machine
-    --[154] = Donate 600 Coins to the Donation Machine
+    [151] = SlotAchievement:new(151, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 20 }):register(),
+    [152] = SlotAchievement:new(152, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 100 }):register(),
+    [153] = SlotAchievement:new(153, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 200 }):register(),
+    [154] = SlotAchievement:new(154, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 600 }):register(),
     --[155] = Complete Chapter 6
     --[156] = Earn all Completion Marks on Hard mode as The Lost
     --[157] = Defeat Mom's Heart 11 times and unlock Eve
@@ -243,16 +246,16 @@ return {
     [239] = KillAchievement:new(239, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     --[240] = Complete the Boss Rush as Keeper
     [241] = KillAchievement:new(241, { items = 0, sprites = {"achievement_241_supergreedbaby"} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 1, variant = 0 }}}, difficulty = -1 }):register(),
-    --[242] = Donate 2 Coins to the Greed Donation Machine
-    --[243] = Donate 14 Coins to the Greed Donation Machine
-    --[244] = Donate 33 Coins to the Greed Donation Machine
-    --[245] = Donate 68 Coins to the Greed Donation Machine
-    --[246] = Donate 111 Coins to the Greed Donation Machine
-    --[247] = Donate 234 Coins to the Greed Donation Machine
-    --[248] = Donate 439 Coins to the Greed Donation Machine
-    --[249] = Donate 666 Coins to the Greed Donation Machine
-    --[250] = Donate 879 Coins to the Greed Donation Machine
-    --[251] = Donate 1000 Coins to the Greed Donation Machine
+    [242] = SlotAchievement:new(242, { items = 0, sprites = {"achievement_242_luckypenny"} }, { type = SlotType.GREED, coins = 2 }):register(),
+    [243] = SlotAchievement:new(243, { items = 0, sprites = {"achievement_243_specialhangingshopkeepers"} }, { type = SlotType.GREED, coins = 14 }):register(),
+    [244] = SlotAchievement:new(244, { items = 1, sprites = {} }, { type = SlotType.GREED, coins = 33 }):register(),
+    [245] = SlotAchievement:new(245, { items = 0, sprites = {"achievement_245_cainpaperclip"} }, { type = SlotType.GREED, coins = 68 }):register(),
+    [246] = SlotAchievement:new(246, { items = 0, sprites = {"achievement_246_everythingisterrible2"} }, { type = SlotType.GREED, coins = 111 }):register(),
+    [247] = SlotAchievement:new(247, { items = 0, sprites = {"achievement_247_specialshopkeepers"} }, { type = SlotType.GREED, coins = 234 }):register(),
+    [248] = SlotAchievement:new(248, { items = 0, sprites = {"achievement_248_everazorblade"} }, { type = SlotType.GREED, coins = 439 }):register(),
+    [249] = SlotAchievement:new(249, { items = 1, sprites = {} }, { type = SlotType.GREED, coins = 666 }):register(),
+    [250] = SlotAchievement:new(250, { items = 0, sprites = {"achievement_250_lostholymantle"} }, { type = SlotType.GREED, coins = 879 }):register(),
+    [251] = SlotAchievement:new(251, { items = 0, sprites = {"achievement_251_keeper"} }, { type = SlotType.GREED, coins = 1000 }):register(),
     --[252] = Earn all Hard mode Completion Marks as ???
     --[253] = Earn all Hard mode Completion Marks as Isaac
     --[254] = Earn all Hard mode Completion Marks as Magdalene
@@ -276,7 +279,7 @@ return {
     --[272] = Done with 4
     --[273] = Unlock Judas and It Lives!
     --[274] = Done with 4
-    --[275] = Donate 999 Coins to the Greed Donation Machine
+    [275] = SlotAchievement:new(275, { items = 0, sprites = {"achievement_generosity"} }, { type = SlotType.GREED, coins = 999 }):register(),
     --[276] = Defeat Mega Satan as every character ((in Repentance and Repentance+) except tainted characters)
     --[277] = Defeat Mega Satan and unlock The Negative
     --[278] = Done with 4
@@ -342,7 +345,7 @@ return {
     [338] = KillAchievement:new(338, { items = 2, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_DELIRIUM, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
     --[339] = Unlock 402 random achievements and have at least 510 items in the collection page
     [340] = KillAchievement:new(340, { items = 0, sprites = {"achievement_apollyon"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MEGA_SATAN_2, times = 1, variant = -1 }}}, difficulty = -1 }):register(),
-    --[341] = Donate 500 Coins to the Greed Donation Machine
+    [341] = SlotAchievement:new(341, { items = 0, sprites = {"achievement_greedier"} }, { type = SlotType.GREED, coins = 500 }):register(),
     --[342] = Done with 34
     [343] = KillAchievement:new(343, { items = 0, sprites = {"achievement_floodedcaves"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 16, variant = 1 }}}, difficulty = -1 }):register(),
     [344] = KillAchievement:new(344, { items = 0, sprites = {"achievement_dankdepths"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 21, variant = 1 }}}, difficulty = -1 }):register(),

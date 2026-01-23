@@ -29,16 +29,8 @@ achievement_237_keeperstorekey
 achievement_238_deeppockets
 achievement_239_karma
 achievement_240_stickynickels
-achievement_242_luckypenny
-achievement_243_specialhangingshopkeepers
 achievement_244_woodennickel
-achievement_245_cainpaperclip
-achievement_246_everythingisterrible2
-achievement_247_specialshopkeepers
-achievement_248_everazorblade
 achievement_249_storekey
-achievement_250_lostholymantle
-achievement_251_keeper
 achievement_252_hivebaby
 achievement_253_buddybaby
 achievement_254_colorfulbaby
@@ -220,7 +212,6 @@ achievement_fruityplum
 achievement_gamekid
 achievement_gehenna
 achievement_gello
-achievement_generosity
 achievement_genesis
 achievement_ghostbombs
 achievement_gildedkey
@@ -232,7 +223,6 @@ achievement_goldenpenny
 achievement_goldenrazor
 achievement_goldentrinket
 achievement_goldpill
-achievement_greedier
 achievement_greedsgullet
 achievement_guppyseye
 achievement_haemolacria

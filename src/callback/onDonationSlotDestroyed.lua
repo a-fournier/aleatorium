@@ -1,5 +1,6 @@
 local Logger = require("src/utils/logger")
 local CallBackIds = require("src/callback/enums/callback_ids")
+local SlotType = require("src/slots/enums/slot_type")
 local Table = require("src/utils/table")
 
 local onDonationSlotDestroyed = {
@@ -57,7 +58,7 @@ end
 local function scanSlots(slots, greedSlots)
     for _, e in ipairs(slots) do
         if isCoinInserted(e) then
-            Isaac.RunCallbackWithParam(CallBackIds.MC_PRE_DONATION_SLOT_COIN_INSERTED, nil, "shop")
+            Isaac.RunCallbackWithParam(CallBackIds.MC_PRE_DONATION_SLOT_COIN_INSERTED, nil, SlotType.SHOP)
         end
 
         local spr = e:GetSprite()
@@ -72,7 +73,7 @@ local function scanSlots(slots, greedSlots)
 
     for _, e in ipairs(greedSlots) do
         if isCoinInserted(e) then
-            Isaac.RunCallbackWithParam(CallBackIds.MC_PRE_DONATION_SLOT_COIN_INSERTED, nil, "greed")
+            Isaac.RunCallbackWithParam(CallBackIds.MC_PRE_DONATION_SLOT_COIN_INSERTED, nil, SlotType.GREED)
         end
     end
 

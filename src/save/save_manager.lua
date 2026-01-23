@@ -1,6 +1,7 @@
 local json = require("json")
 local Converter = require("src/utils/converter")
 local Logger = require("src/utils/logger")
+local SlotType = require("src/slots/enums/slot_type")
 
 local MOD_REF
 local SaveManager = {
@@ -11,8 +12,8 @@ local SaveManager = {
     achievements = {},
     items = {},
     slots = {
-        shop = 0,
-        greed = 0
+        [SlotType.SHOP] = 0,
+        [SlotType.GREED] = 0
     }
 }
 
