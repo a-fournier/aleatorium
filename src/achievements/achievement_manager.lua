@@ -54,13 +54,22 @@ function AchievementManager.showPopups(sprites, items)
     end
 end
 
-function registerAchievements()
-    require("src/achievements/achievements")
-end
-
 function AchievementManager.register(mod)
     MOD_REF = mod
-    registerAchievements()
+
+    local achievements = require("src/achievements/achievements")
+    for _, class in pairs(achievements) do
+        class:register(MOD_REF)
+    end
+end
+
+function AchievementManager.unregister(mod)
+    MOD_REF = nil
+
+    local achievements = require("src/achievements/achievements")
+    for _, class in pairs(achievements) do
+        class:unregister(MOD_REF)
+    end
 end
 
 return AchievementManager

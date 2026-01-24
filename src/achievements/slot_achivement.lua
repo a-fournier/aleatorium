@@ -11,10 +11,14 @@ function SlotAchievement:check()
     end
 end
 
-function SlotAchievement:register()
+function SlotAchievement:register(mod)
     if not self:isAchieve() then
-        self.mod:AddCallback(CallBackIds.MC_POST_DONATION_SLOT_COIN_INSERTED, function() self:check() end)
+        mod:AddCallback(CallBackIds.MC_POST_DONATION_SLOT_COIN_INSERTED, function() self:check() end)
     end
+end
+
+function SlotAchievement:unregister(mod)
+    mod:RemoveCallback(CallBackIds.MC_POST_DONATION_SLOT_COIN_INSERTED, function() self:check() end)
 end
 
 return SlotAchievement

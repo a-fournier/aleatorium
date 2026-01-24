@@ -67,10 +67,14 @@ function KillAchievement:check(entity)
     end
 end
 
-function KillAchievement:register()
+function KillAchievement:register(mod)
     if not self:isAchieve() then
-        self.mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, function(_, entity) self:check(entity) end)
+        mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, function(_, entity) self:check(entity) end)
     end
+end
+
+function KillAchievement:unregister(mod)
+    mod:RemoveCallback(ModCallbacks.MC_POST_ENTITY_KILL, function(_, entity) self:check(entity) end)
 end
 
 return KillAchievement

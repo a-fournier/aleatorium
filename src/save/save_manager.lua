@@ -47,7 +47,6 @@ function SaveManager.saveDatas()
     if ok then
         MOD_REF:SaveData(encoded)
     end
-    return ok
 end
 
 function SaveManager.register(mod, isContinued)
