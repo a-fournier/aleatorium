@@ -41,6 +41,7 @@ function getNonSerializedDatas()
 end
 
 function SaveManager.saveDatas()
+    Logger.debug("===== Saving datas...")
     local parsed = Converter:stringifyKeysDeep(getNonSerializedDatas())
     local ok, encoded = pcall(json.encode, parsed)
     if ok then
