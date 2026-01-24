@@ -66,10 +66,9 @@ return {
     -- [58] = Pick up both Key Pieces from the Angels in one run
     [59] = SlotAchievement:new(59, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 900 }),
     [60] = ChallengeAchievement:new(60, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_BEANS }),
-    -- [60] = Complete Beans! (challenge #13)
     [61] = KillAchievement:new(61, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_SHOPKEEPER, times = 20, variant = -1 }}}, difficulty = -1 }),
-    -- [62] = Complete The Family Man (challenge #19)
-    -- [63] = Complete It's in the Cards (challenge #14)
+    [62] = ChallengeAchievement:new(62, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_THE_FAMILY_MAN }),
+    [63] = ChallengeAchievement:new(63, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_ITS_IN_THE_CARDS }),
     -- [64] = Play either Shell Game or (in Repentance) Hell Game 100 times
     -- [65] = Become Guppy
     -- [66] = Take 10 Angel Room items
@@ -95,22 +94,22 @@ return {
     --[86] = Beat all Basement bosses (in Repentance and Repentance+) Except Baby Plum Not restricted to beating bosses in The Basement
     --[87] = Beat all Caves bosses (in Repentance and Repentance+) Except Bumbino Not restricted to beating bosses in The Caves
     --[88] = Beat all Depths bosses (in Repentance and Repentance+) Except Reap Creep Not restricted to beating bosses in The Depths
-    --[89] = Complete Pitch Black (challenge #1)
-    --[90] = Complete High Brow (challenge #2)
-    --[91] = Complete Head Trauma (challenge #3)
-    --[92] = Complete Darkness Falls (challenge #4)
-    --[93] = Complete The Tank (challenge #5)
-    --[94] = Complete Solar System (challenge #6)
-    --[95] = Complete Purist (challenge #20)
-    --[96] = Complete Cat Got Your Tongue (challenge #8)
-    --[97] = Complete Demo Man (challenge #9)
-    --[98] = Complete Cursed! (challenge #10)
-    --[99] = Complete Glass Cannon (challenge #11)
-    --[100] = Complete When Life Gives You Lemons (challenge #12)
-    --[101] = Complete Slow Roll (challenge #15)
-    --[102] = Complete Computer Savvy (challenge #16)
-    --[103] = Complete Waka Waka (challenge #17)
-    --[104] = Complete The Host (challenge #18)
+    [89] = ChallengeAchievement:new(89, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_PITCH_BLACK }),
+    [90] = ChallengeAchievement:new(90, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_HIGH_BROW }),
+    [91] = ChallengeAchievement:new(91, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_HEAD_TRAUMA }),
+    [92] = ChallengeAchievement:new(92, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_DARKNESS_FALLS }),
+    [93] = ChallengeAchievement:new(93, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_THE_TANK }),
+    [94] = ChallengeAchievement:new(94, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_SOLAR_SYSTEM }),
+    [95] = ChallengeAchievement:new(95, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_PURIST }),
+    [96] = ChallengeAchievement:new(96, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_CAT_GOT_YOUR_TONGUE }),
+    [97] = ChallengeAchievement:new(97, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_DEMO_MAN }),
+    [98] = ChallengeAchievement:new(98, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_CURSED }),
+    [99] = ChallengeAchievement:new(99, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_GLASS_CANNON }),
+    [100] = ChallengeAchievement:new(100, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_WHEN_LIFE_GIVES_LEMONS }),
+    [101] = ChallengeAchievement:new(101, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_SLOW_ROLL }),
+    [102] = ChallengeAchievement:new(102, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_COMPUTER_SAVY }),
+    [103] = ChallengeAchievement:new(103, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_WAKA_WAKA }),
+    [104] = ChallengeAchievement:new(104, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_THE_HOST }),
     --[105] = Complete the Boss Rush as Lazarus
     [106] = KillAchievement:new(106, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 0 }}}, difficulty = -1 }),
     [107] = KillAchievement:new(107, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JUDAS] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 0 }}}, difficulty = -1 }),
@@ -126,7 +125,7 @@ return {
     [117] = KillAchievement:new(117, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LAZARUS] = { times = 1, entities = {{type = EntityType.ENTITY_SATAN, times = 1, variant = -1 }}}, difficulty = -1 }),
     [118] = KillAchievement:new(118, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LAZARUS] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 1 }}}, difficulty = -1 }),
     [119] = KillAchievement:new(119, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LAZARUS] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }),
-    --[120] = Complete Suicide King (challenge #7)
+    [120] = ChallengeAchievement:new(120, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_SUICIDE_KING }),
     [121] = KillAchievement:new(121, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 0 }}}, difficulty = -1 }),
     [122] = KillAchievement:new(122, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_SATAN, times = 1, variant = -1 }}}, difficulty = -1 }),
     [123] = KillAchievement:new(123, { items = 1, sprites = {} }, { [PlayerType.PLAYER_EDEN] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 1 }}}, difficulty = -1 }),
@@ -230,16 +229,17 @@ return {
     [221] = KillAchievement:new(221, { items = 1, sprites = {} }, { [PlayerType.PLAYER_LILITH] = { times = 1, entities = {{type = EntityType.ENTITY_THE_LAMB, times = 1, variant = -1 }}}, difficulty = -1 }),
     --[222] = Complete the Boss Rush as Lilith
     [223] = KillAchievement:new(223, { items = 0, sprites = {"achievement_223_goatheadbaby"} }, { [PlayerType.PLAYER_LILITH] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 1, variant = 0 }}}, difficulty = -1 }),
-    --[224] = Complete XXXXXXXXL (challenge #21)
-    --[225] = Complete SPEED! (challenge #22)
-    --[226] = Complete Blue Bomber (challenge #23)
-    --[227] = Complete PAY TO PLAY (challenge #24)
-    --[228] = Complete Have a Heart (challenge #25)
-    --[229] = Complete I RULE! (challenge #26)
-    --[230] = Complete BRAINS! (challenge #27)
-    --[231] = Complete PRIDE DAY! (challenge #28)
-    --[232] = Complete Onan's Streak (challenge #29)
-    --[233] = Complete The Guardian (challenge #30)
+
+    [224] = ChallengeAchievement:new(224, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_XXXXXXXXL }),
+    [225] = ChallengeAchievement:new(225, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_SPEED }),
+    [226] = ChallengeAchievement:new(226, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_BLUE_BOMBER }),
+    [227] = ChallengeAchievement:new(227, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_PAY_TO_PLAY }),
+    [228] = ChallengeAchievement:new(228, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_HAVE_A_HEART }),
+    [229] = ChallengeAchievement:new(229, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_I_RULE }),
+    [230] = ChallengeAchievement:new(230, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_BRAINS }),
+    [231] = ChallengeAchievement:new(231, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_PRIDE_DAY }),
+    [232] = ChallengeAchievement:new(232, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_ONANS_STREAK }),
+    [233] = ChallengeAchievement:new(233, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_GUARDIAN }),
     [234] = KillAchievement:new(234, { items = 0, sprites = {"achievement_234_bluewomb"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_MOMS_HEART, times = 10, variant = 0 }}}, difficulty = -1 }),
     --[235] = Unlock 275 random achievements and have at least 510 items in the collection page
     [236] = KillAchievement:new(236, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 1, variant = 0 }}}, difficulty = -1 }),
@@ -337,11 +337,11 @@ return {
     --[328] = Reset 7 times in a row
     --[329] = Complete a Chapter (floors I and II) after Basement, start-to-finish, with only half a Heart total (can use The Lost)
     --[330] = Obtain 50 items in a run
-    --[331] = Complete Backasswards (challenge #31)
-    --[332] = Complete Aprils Fool (challenge #32)
-    --[333] = Complete Pokey Mans (challenge #33)
-    --[334] = Complete Ultra Hard (challenge #34)
-    --[335] = Complete Pong (challenge #35)
+    [331] = ChallengeAchievement:new(331, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_BACKASSWARDS }),
+    [332] = ChallengeAchievement:new(332, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_APRILS_FOOL }),
+    [333] = ChallengeAchievement:new(333, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_POKEY_MANS }),
+    [334] = ChallengeAchievement:new(334, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_ULTRA_HARD }),
+    [335] = ChallengeAchievement:new(335, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_PONG }),
     --[336] = Get a 5-win streak in the Daily Challenges They don't have to be consecutive days, only the runs you play are counted
     --[337] = Complete 3 Victory Laps by defeating The Lamb
     [338] = KillAchievement:new(338, { items = 2, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_DELIRIUM, times = 1, variant = -1 }}}, difficulty = -1 }),
@@ -524,12 +524,12 @@ return {
     --[514] = Done with 476
     --[515] = Done with 490
     --[516] = Done with 483
-    --[517] = Complete Scat Man (challenge #36)
-    --[518] = Complete Bloody Mary (challenge #37)
-    --[519] = Complete Baptism by Fire (challenge #38)
-    --[520] = Complete Isaac's Awakening (challenge #39)
-    --[521] = Complete Seeing Double (challenge #40)
-    --[522] = Complete Pica Run (challenge #41)
+    [517] = ChallengeAchievement:new(517, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_SCAT_MAN }),
+    [518] = ChallengeAchievement:new(518, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_BLOODY_MARY }),
+    [519] = ChallengeAchievement:new(519, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_BAPTISM_BY_FIRE }),
+    [520] = ChallengeAchievement:new(520, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_ISAACS_AWAKENING }),
+    [521] = ChallengeAchievement:new(521, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_SEEING_DOUBLE }),
+    [522] = ChallengeAchievement:new(522, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_PICA_RUN }),
     --[523] = Donate to Battery Bums until they pay out with an item 5 times
     [524] = KillAchievement:new(524, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THELOST_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [525] = KillAchievement:new(525, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JUDAS_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
@@ -538,14 +538,14 @@ return {
     [528] = KillAchievement:new(528, { items = 1, sprites = {} }, { [PlayerType.PLAYER_BLUEBABY_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [529] = KillAchievement:new(529, { items = 1, sprites = {} }, { [PlayerType.PLAYER_BETHANY_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [530] = KillAchievement:new(530, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
-    --[531] = Complete Hot Potato (challenge #42)
-    --[532] = Complete Cantripped (challenge #43)
-    --[533] = Complete Red Redemption (challenge #44)
+    [531] = ChallengeAchievement:new(531, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_HOT_POTATO }),
+    [532] = ChallengeAchievement:new(532, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_CANTRIPPED }),
+    [533] = ChallengeAchievement:new(533, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_RED_REDEMPTION }),
     [534] = KillAchievement:new(534, { items = 1, sprites = {} }, { [PlayerType.PLAYER_CAIN_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [535] = KillAchievement:new(535, { items = 1, sprites = {} }, { [PlayerType.PLAYER_SAMSON_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [536] = KillAchievement:new(536, { items = 1, sprites = {} }, { [PlayerType.PLAYER_KEEPER_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [537] = KillAchievement:new(537, { items = 1, sprites = {} }, { [PlayerType.PLAYER_THEFORGOTTEN_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, [PlayerType.PLAYER_THESOUL_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, operator= 'OR', difficulty = -1 }),
-    --[538] = Complete DELETE THIS (challenge #45)
+    [538] = ChallengeAchievement:new(538, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_DELETE_THIS }),
     [539] = KillAchievement:new(539, { items = 1, sprites = {} }, { [PlayerType.PLAYER_AZAZEL_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [540] = KillAchievement:new(540, { items = 1, sprites = {} }, { [PlayerType.PLAYER_APOLLYON_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
     [541] = KillAchievement:new(541, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC_B] = { times = 1, entities = {{type = EntityType.ENTITY_ULTRA_GREED, times = 1, variant = 1 }}}, difficulty = -1 }),
