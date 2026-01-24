@@ -29,11 +29,8 @@ end
 
 function AchievementManager.unlockAchievement(id, unlock)
     SaveManager.achievements[id] = { isAchieve = true }
-    local ok = SaveManager.saveDatas()
-
-    if ok then
-        AchievementManager.showPopups(unlock.sprites, unlock.items)
-    end
+    SaveManager.saveDatas()
+    AchievementManager.showPopups(unlock.sprites, unlock.items)
 end
 
 function AchievementManager.showPopups(sprites, items)

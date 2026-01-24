@@ -32,11 +32,8 @@ function ItemManager.unlockItem(item, callback)
     end
     item.isUnlocked = true
     SaveManager.items[item.id] = { isUnlocked = item.isUnlocked }
-
-    local ok = SaveManager.saveDatas()
-    if ok then
-        FakeAchievementPopup.Show({ sprite = item.unlockSprite }, callback)
-    end
+    SaveManager.saveDatas()
+    FakeAchievementPopup.Show({ sprite = item.unlockSprite }, callback)
 end
 
 function ItemManager.buildPoolAvailableItems(pool)

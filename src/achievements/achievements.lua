@@ -65,7 +65,7 @@ return {
     [57] = KillAchievement:new(57, { items = 0, sprites = {"achievement_thepolaroid"} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_ISAAC, times = 5, variant = 0 }}}, difficulty = -1 }),
     -- [58] = Pick up both Key Pieces from the Angels in one run
     [59] = SlotAchievement:new(59, { items = 1, sprites = {} }, { type = SlotType.SHOP, coins = 900 }),
-    [60] = ChallengeAchievement:new(60, { items = 1, sprites = {} }, { challenge = 13 }),
+    [60] = ChallengeAchievement:new(60, { items = 1, sprites = {} }, { challenge = Challenge.CHALLENGE_BEANS }),
     -- [60] = Complete Beans! (challenge #13)
     [61] = KillAchievement:new(61, { items = 1, sprites = {} }, { [-1] = { times = 1, entities = {{type = EntityType.ENTITY_SHOPKEEPER, times = 20, variant = -1 }}}, difficulty = -1 }),
     -- [62] = Complete The Family Man (challenge #19)

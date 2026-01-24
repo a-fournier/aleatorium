@@ -3,25 +3,28 @@ local Logger = require("src/utils/logger")
 
 ChallengeAchievement = Achievement:extend()
 
-function ChallengeAchievement:check()
-    local player = Isaac.GetPlayer()
+function ChallengeAchievement:check(entity)
     local challenge = Game().Challenge
-    Logger.debug("=== 3 ===")
 
-    if not self:isAchieve() and challenge == self.properties.challenge and not player.IsDead()
+    if not self:isAchieve()
+        and challenge == self.properties.challenge
+        and entity.Type == EntityType.ENTITY_PICKUP
+        and entity.Variant == PickupVariant.PICKUP_TROPHY
     then
-        Logger.debug("=== 4 ===")
+        self:onAchieve()
     end
 end
 
 function ChallengeAchievement:register(mod)
-    if not self:isAchieve() then
-        mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function(_) self:check() end)
+    local challenge = Game().Challenge
+
+    if not self:isAchieve() and challenge ~= Challenge.CHALLENGE_NULL then
+        mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, entity) self:check(entity) end)
     end
 end
 
 function ChallengeAchievement:unregister(mod)
-    mod:RemoveCallback(ModCallbacks.MC_PRE_GAME_EXIT, function(_, isGameOver) self:check(isGameOver) end)
+    mod:RemoveCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, function(_, entity) self:check(entity) end)
 end
 
 return ChallengeAchievement
