@@ -59,13 +59,11 @@ achievement_angelicprism
 achievement_angels
 achievement_angryfly
 achievement_animasola
-achievement_apollyonb
 achievement_apollyonbaby
 achievement_apollyonsbestfriend
 achievement_ashpit
 achievement_astralprojection
 achievement_azazel
-achievement_azazelb
 achievement_azazelsrage
 achievement_azazelsstump
 achievement_babybender
@@ -75,7 +73,6 @@ achievement_batwing
 achievement_bellyjelly
 achievement_berserk
 achievement_bethany
-achievement_bethanyb
 achievement_bethsessence
 achievement_bethsfaith
 achievement_birdcage
@@ -90,7 +87,6 @@ achievement_bloodpuppy
 achievement_bloodycrown
 achievement_bloodygust
 achievement_bloodypenny
-achievement_bluebabyb
 achievement_bluebabyssoul
 achievement_bluekey
 achievement_bonebaby
@@ -110,7 +106,6 @@ achievement_buddyinabox
 achievement_burntpenny
 achievement_butter
 achievement_cain
-achievement_cainb
 achievement_cainseye
 achievement_candyheart
 achievement_cardagainsthumanity
@@ -192,7 +187,6 @@ achievement_eternald6
 achievement_eucharist
 achievement_euthanasia
 achievement_eve
-achievement_eveb
 achievement_everythingjar
 achievement_evesbirdfoot
 achievement_expansionpack
@@ -246,16 +240,12 @@ achievement_ibs
 achievement_icecube
 achievement_illusionbaby
 achievement_innerchild
-achievement_isaacb
 achievement_isaacshead
 achievement_isaacstomb
-achievement_jacobb
 achievement_jarofwisps
 achievement_jawbone
-achievement_judasb
 achievement_judastongue
 achievement_jumpercables
-achievement_keeperb
 achievement_keepersbargain
 achievement_keepersbox
 achievement_keeperskin
@@ -266,14 +256,12 @@ achievement_krampus
 achievement_lachryphagy
 achievement_larynx
 achievement_lazarus
-achievement_lazarusb
 achievement_lazbleedsmore
 achievement_lemegeton
 achievement_leprosy
 achievement_lilabaddon
 achievement_lilclot
 achievement_lildelirium
-achievement_lilithb
 achievement_lilportal
 achievement_lilspewer
 achievement_locked
@@ -289,7 +277,6 @@ achievement_luckysack
 achievement_luckytoe
 achievement_m
 achievement_magdalene
-achievement_magdaleneb
 achievement_maggynowholdsapill
 achievement_maggysfaith
 achievement_magicskin
@@ -380,7 +367,6 @@ achievement_sacredorb
 achievement_sacrificialaltar
 achievement_salvation
 achievement_samson
-achievement_samsonb
 achievement_samsonfeelshealthy
 achievement_samsonslock
 achievement_sanguinebond
@@ -441,10 +427,8 @@ achievement_thecatacombs
 achievement_thecellar
 achievement_thechaoscard
 achievement_theforgotten
-achievement_theforgottenb
 achievement_thelefthand
 achievement_thelost
-achievement_thelostb
 achievement_therazor
 achievement_thestairway
 achievement_theswarm

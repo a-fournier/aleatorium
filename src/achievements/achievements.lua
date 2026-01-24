@@ -3,6 +3,7 @@ local KillAchievement = require("src/achievements/kill_achievement")
 local ChallengeAchievement = require("src/achievements/challenge_achievement")
 local SlotAchievement = require("src/achievements/slot_achivement")
 local SlotType = require("src/slots/enums/slot_type")
+local TaintedAchievement = require("src/achievements/tainted_achievement")
 
 return {
     -- [0] = KillAchievement:new(0, { items = 0, sprites = {} }, { operator = 'OR', [PlayerType.PLAYER_ISAAC] = { times = 1, operator = 'OR', entities = { [EntityType.ENTITY_FLY] = 2, [EntityType.ENTITY_POOTER] = 1 } }, difficulty = Difficulty.DIFFICULTY_HARD })
@@ -481,23 +482,22 @@ return {
     [471] = KillAchievement:new(471, { items = 1, sprites = {} }, { [PlayerType.PLAYER_BETHANY] = { times = 1, entities = {{type = EntityType.ENTITY_BEAST, times = 1, variant = -1 }}}, difficulty = -1 }),
     [472] = KillAchievement:new(472, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JACOB] = { times = 1, entities = {{type = EntityType.ENTITY_MOTHER, times = 1, variant = -1 }}}, [PlayerType.PLAYER_ESAU] = { times = 1, entities = {{type = EntityType.ENTITY_MOTHER, times = 1, variant = -1 }}}, operator = 'OR', difficulty = -1 }),
     [473] = KillAchievement:new(473, { items = 1, sprites = {} }, { [PlayerType.PLAYER_JACOB] = { times = 1, entities = {{type = EntityType.ENTITY_BEAST, times = 1, variant = -1 }}}, [PlayerType.PLAYER_ESAU] = { times = 1, entities = {{type = EntityType.ENTITY_BEAST, times = 1, variant = -1 }}}, operator = 'OR', difficulty = -1 }),
-    --[474] = Use Red Key (etc.) to open the hidden closet in Home as Isaac
-    --[475] = Use Red Key (etc.) to open the hidden closet in Home as Magdalene
-    --[476] = Use Red Key (etc.) to open the hidden closet in Home as Cain
-    --[477] = Use Red Key (etc.) to open the hidden closet in Home as Judas
-    --[478] = Use Red Key (etc.) to open the hidden closet in Home as Blue Baby
-    --[479] = Use Red Key (etc.) to open the hidden closet in Home as Eve
-    --[480] = Use Red Key (etc.) to open the hidden closet in Home as Samson
-    --[481] = Use Red Key (etc.) to open the hidden closet in Home as Azazel
-    --[482] = Use Red Key (etc.) to open the hidden closet in Home as Lazarus
-    --[483] = Use Red Key (etc.) to open the hidden closet in Home as Eden
-    --[484] = Use Red Key (etc.) to open the hidden closet in Home as The Lost
-    --[485] = Use Red Key (etc.) to open the hidden closet in Home as Lilith
-    --[486] = Use Red Key (etc.) to open the hidden closet in Home as Keeper
-    --[487] = Use Red Key (etc.) to open the hidden closet in Home as Apollyon
-    --[488] = Use Red Key (etc.) to open the hidden closet in Home as The Forgotten
-    --[489] = Use Red Key (etc.) to open the hidden closet in Home as Bethany
-    --[490] = Use Red Key (etc.) to open the hidden closet in Home as Jacob and Esau
+    [474] = TaintedAchievement:new(474, { items = 0, sprites = {"achievement_isaacb"} }, { player = PlayerType.PLAYER_ISAAC }),
+    [475] = TaintedAchievement:new(475, { items = 0, sprites = {"achievement_magdaleneb"} }, { player = PlayerType.PLAYER_MAGDALENE }),
+    [476] = TaintedAchievement:new(476, { items = 0, sprites = {"achievement_cainb"} }, { player = PlayerType.PLAYER_CAIN }),
+    [477] = TaintedAchievement:new(477, { items = 0, sprites = {"achievement_judasb"} }, { player = PlayerType.PLAYER_JUDAS }),
+    [478] = TaintedAchievement:new(478, { items = 0, sprites = {"achievement_bluebabyb"} }, { player = PlayerType.PLAYER_BLUEBABY }),
+    [479] = TaintedAchievement:new(479, { items = 0, sprites = {"achievement_eveb"} }, { player = PlayerType.PLAYER_EVE }),
+    [480] = TaintedAchievement:new(480, { items = 0, sprites = {"achievement_samsonb"} }, { player = PlayerType.PLAYER_SAMSON }),
+    [481] = TaintedAchievement:new(481, { items = 0, sprites = {"achievement_azazelb"} }, { player = PlayerType.PLAYER_AZAZEL }),
+    [482] = TaintedAchievement:new(482, { items = 0, sprites = {"achievement_lazarusb"} }, { player = PlayerType.PLAYER_LAZARUS }),
+    [483] = TaintedAchievement:new(483, { items = 0, sprites = {"achievement_thelostb"} }, { player = PlayerType.PLAYER_THELOST }),
+    [484] = TaintedAchievement:new(484, { items = 0, sprites = {"achievement_lilithb"} }, { player = PlayerType.PLAYER_LILITH }),
+    [485] = TaintedAchievement:new(485, { items = 0, sprites = {"achievement_keeperb"} }, { player = PlayerType.PLAYER_KEEPER }),
+    [486] = TaintedAchievement:new(486, { items = 0, sprites = {"achievement_apollyonb"} }, { player = PlayerType.PLAYER_APOLLYON }),
+    [487] = TaintedAchievement:new(487, { items = 0, sprites = {"achievement_theforgottenb"} }, { player = PlayerType.PLAYER_THEFORGOTTEN }),
+    [488] = TaintedAchievement:new(488, { items = 0, sprites = {"achievement_bethanyb"} }, { player = PlayerType.PLAYER_BETHANY }),
+    [489] = TaintedAchievement:new(489, { items = 0, sprites = {"achievement_jacobb"} }, { player = PlayerType.PLAYER_JACOB }),
     [491] = KillAchievement:new(491, { items = 1, sprites = {} }, { [PlayerType.PLAYER_ISAAC_B] = { times = 1, entities = {{type = EntityType.ENTITY_BEAST, times = 1, variant = -1 }}}, difficulty = -1 }),
     [492] = KillAchievement:new(492, { items = 1, sprites = {} }, { [PlayerType.PLAYER_MAGDALENE_B] = { times = 1, entities = {{type = EntityType.ENTITY_BEAST, times = 1, variant = -1 }}}, difficulty = -1 }),
     [493] = KillAchievement:new(493, { items = 1, sprites = {} }, { [PlayerType.PLAYER_CAIN_B] = { times = 1, entities = {{type = EntityType.ENTITY_BEAST, times = 1, variant = -1 }}}, difficulty = -1 }),

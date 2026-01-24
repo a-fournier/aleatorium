@@ -11,7 +11,7 @@ local function OnPickupCollision(_, entity, _)
     Logger.debug("Pickup collided:", "Type =", entity.Type, "Variant =", entity.Variant, "SubType =", entity.SubType)
 end
 
-local function OnPlayerCollision(_, entity, collided)
+local function OnPlayerCollision(_, _, collided)
     Logger.debug("Player collided:", "Type =", collided.Type, "Variant =", collided.Variant, "SubType =", collided.SubType)
 end
 
