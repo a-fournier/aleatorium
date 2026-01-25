@@ -18,6 +18,7 @@ end
 local function onRoomClear()
     local game = Game()
     local room = game:GetRoom()
+    Logger.debug("PlayerType =", game:GetPlayer(0):GetPlayerType(), "cleared the room")
     Logger.debug("Room cleared", "RoomType =", room:GetType(), "LevelStage =", game:GetLevel():GetStage(), "StageType =", game:GetLevel():GetStageType(), "GridHeight =", room:GetGridHeight(), "GridWidth =", room:GetGridWidth(), "GridSize", room:GetGridSize())
 end
 

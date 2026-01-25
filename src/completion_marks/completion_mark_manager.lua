@@ -1,10 +1,24 @@
 local Logger = require("src/utils/logger")
+local CallBackIds = require("src/callback/enums/callback_ids")
 local DifficultyMarkMapper = require("src/completion_marks/mappers/difficulty_mark_mapper")
 local LevelRoomMarkMapper = require("src/completion_marks/mappers/level_room_mark_mapper")
+local PlayerMapper = require("src/completion_marks/mappers/player_mapper")
 local SaveManager = require("src/save/save_manager")
 
 local MOD_REF
 local CompletionMarkManager = {}
+
+function CompletionMarkManager.hasMarks(player, marks, difficulty)
+    local isAllGranted = true
+    local mapped_difficulty = DifficultyMarkMapper[difficulty]
+
+    for _, mark in pairs(marks) do
+        if isAllGranted and not CompletionMarkManager.hasMark(PlayerMapper[player], mark, mapped_difficulty) then
+            isAllGranted = false
+        end
+    end
+    return isAllGranted
+end
 
 -- Check if the player has a completion mark for the given room and difficulty
 -- Difficulties are 0 or 1 (for normal and hard), greed is counted as normal, greedier as hard
@@ -37,7 +51,7 @@ end
 function CompletionMarkManager.onRoomClear()
     Logger.debug("Room cleared, granting completion marks...")
     local game = Game()
-    local player = game:GetPlayer(0):GetPlayerType()
+    local player = PlayerMapper[game:GetPlayer(0):GetPlayerType()]
     local mark = CompletionMarkManager.getMark(game)
     local difficulty = DifficultyMarkMapper[game.Difficulty]
 
@@ -45,6 +59,7 @@ function CompletionMarkManager.onRoomClear()
         Logger.debug("Granting completion mark", "PlayerType =", player, "Mark =", mark, "Difficulty =", difficulty)
         SaveManager.completion_marks[player] = SaveManager.completion_marks[player] or {}
         SaveManager.completion_marks[player][mark] = difficulty
+        Isaac.RunCallbackWithParam(CallBackIds.MC_POST_COMPLETION_MARK_GRANTED)
     end
 end
 

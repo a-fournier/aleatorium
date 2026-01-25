@@ -31,11 +31,11 @@ return {
         },
         -- Boss Rush
         [LevelStage.STAGE3_2] = {
-            [StageType.STAGETYPE_ORIGINAL] = {[135] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
-            [StageType.STAGETYPE_WOTL] = {[135] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
-            [StageType.STAGETYPE_AFTERBIRTH] = {[135] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
-            [StageType.STAGETYPE_REPENTANCE] = {[135] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
-            [StageType.STAGETYPE_REPENTANCE_B] = {[135] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }}
+            [StageType.STAGETYPE_ORIGINAL] = {[448] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
+            [StageType.STAGETYPE_WOTL] = {[448] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
+            [StageType.STAGETYPE_AFTERBIRTH] = {[448] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
+            [StageType.STAGETYPE_REPENTANCE] = {[448] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }},
+            [StageType.STAGETYPE_REPENTANCE_B] = {[448] = { [RoomType.ROOM_BOSSRUSH] = MarkIds.BOSS_RUSH }}
         },
         -- Hush
         [LevelStage.STAGE4_3] = {
