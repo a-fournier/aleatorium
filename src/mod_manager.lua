@@ -1,4 +1,5 @@
 local AchievementManager = require("src/achievements/achievement_manager")
+local CompletionMarkManager = require("src/completion_marks/completion_mark_manager")
 local DebugManager = require("src/debug/debug_manager")
 local FakeAchievementPopup = require("src/ui/fake_achievement_popup")
 local ItemManager = require("src/items/item_manager")
@@ -13,6 +14,7 @@ local ModManager = {}
 function loadModules(isContinued)
     OnDonationSlotDestroyed.register(MOD_REF)
     SaveManager.register(MOD_REF, isContinued)
+    CompletionMarkManager.register(MOD_REF)
     SlotManager.register(MOD_REF)
     ItemManager.register(MOD_REF)
     AchievementManager.register(MOD_REF)
@@ -22,6 +24,7 @@ end
 
 function unloadModules()
     OnDonationSlotDestroyed.unregister(MOD_REF)
+    CompletionMarkManager.unregister(MOD_REF)
     SlotManager.unregister(MOD_REF)
     DebugManager.unregister(MOD_REF)
 end

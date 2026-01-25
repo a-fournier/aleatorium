@@ -1,0 +1,14 @@
+return {
+    HEART = "HEART",
+    ISAAC = "ISAAC",
+    BLUE_BABY = "BLUE_BABY",
+    SATAN = "SATAN",
+    THE_LAMB = "THE_LAMB",
+    MEGA_SATAN = "MEGA_SATAN",
+    BOSS_RUSH = "BOSS_RUSH",
+    HUSH = "HUSH",
+    ULTRA_GREED = "ULTRA_GREED",
+    DELIRIUM = "DELIRIUM",
+    MOTHER = "MOTHER",
+    THE_BEAST = "THE_BEAST",
+}

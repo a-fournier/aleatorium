@@ -5,11 +5,12 @@ local SlotType = require("src/slots/enums/slot_type")
 
 local MOD_REF
 local SaveManager = {
+    achievements = {},
+    completion_marks = {},
     current_game = {
         rng = { streams = {} },
         items = { }
     },
-    achievements = {},
     items = {},
     slots = {
         [SlotType.SHOP] = 0,
@@ -19,9 +20,10 @@ local SaveManager = {
 
 function loadDatas(isContinued)
     if MOD_REF:HasData() then
-        local ok, decoded = pcall(json.decode, MOD_REF:LoadData())
+        local _, decoded = pcall(json.decode, MOD_REF:LoadData())
         local parsed = Converter:parseIntKeysDeep(decoded)
         SaveManager.achievements = parsed.achievements or SaveManager.achievements
+        SaveManager.completion_marks = parsed.completion_marks or SaveManager.completion_marks
         SaveManager.items = parsed.items or SaveManager.items
         SaveManager.slots = parsed.slots or SaveManager.slots
 
@@ -34,8 +36,9 @@ end
 function getNonSerializedDatas()
     return {
         achievements = SaveManager.achievements,
-        items = SaveManager.items,
+        completion_marks = SaveManager.completion_marks,
         current_game = SaveManager.current_game,
+        items = SaveManager.items,
         slots = SaveManager.slots
     }
 end
